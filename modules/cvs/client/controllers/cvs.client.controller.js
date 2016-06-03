@@ -16,10 +16,10 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-    
+
     // Configure tinymce options
     $scope.tinymceOptions = {
-  selector: '#myTextarea',
+      selector: '#myTextarea',
       theme: 'modern',
       plugins: [
         'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
@@ -27,12 +27,11 @@
         'save table contextmenu directionality template paste textcolor'
       ],
       content_css: [
-          '/modules/core/client/css/tinymce.css'
-        ],
-      toolbar: ['insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | preview', 
-        'formatselect fontselect fontsizeselect'],
+        '/modules/core/client/css/tinymce.css'
+      ],
+      toolbar: ['insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | preview', 'formatselect fontselect fontsizeselect'],
       file_browser_callback: function(field_name, url, type, win) {
-        //configure the file browser callback 
+        // configure the file browser callback
       },
       elementpath: false,
       resize: true
