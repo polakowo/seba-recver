@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Excel To HTML using codebeautify.org</title>
+		<link href="modules/core/client/css/sticky-footer.css" rel="stylesheet">
+	</head>
+	<body>
+		<strong>
+			<section>
+				<div class="page-header">
+					<h1>{{vm.cv._id ? 'Edit CV' : 'New CV'}}</h1>
+				</div>
+				<div class="btn-toolbar">
+					<button type="submit" class="btn btn-default">Save</button>
+					<button type="submit" class="btn btn-default">Preview</button>
+					<button type="submit" class="btn btn-primary btn-space">Download</button>
+					<button type="submit" class="btn btn-info">Need help?</button>
+				</div>
+				<div class="container-fluid">
+					<div class="row content">
+						<div class="col-md-4 sidenav">
+							<h4>Section Management</h4>
+							<hr>
+							<ul class="nav nav-pills nav-stacked">
+								<li>
+									<a href="#section1">Personal Details</a>
+								</li>
+								<li>
+									<a href="#section2">Personal Statement</a>
+								</li>
+								<li class="active">
+									<a href="#section3">Work Experience</a>
+								</li>
+								<li>
+									<a href="#section4">Education</a>
+								</li>
+								<li>
+									<a href="#section5">Hobbies and Interests</a>
+								</li>
+								<li>
+									<a href="#section6">References</a>
+								</li>
+							</ul>
+							<p align="left">
+								<div class="btn-toolbar">
+									
+									<button type="submit" class="btn btn-default">Move down</button>
+									<button type="submit" class="btn btn-default">Move up</button>
+									<button type="submit" class="btn btn-danger disabled">Remove section</button>
+								</div>
+							</p>
+							<br>
+							<h4>Custom Sections</h4>
+							<hr>
+							<input type="text" class="form-control" placeholder="Enter desired section name">
+							<br>
+							<p align="left">
+								<button type="submit" class="btn btn-success">Create new section</button>
+							</p>
+							
+						</div>
+						<div class="col-md-8">
+							<h4>Work Experience</h4>
+							<hr>
+							<div>
+								<p>
+									<div class="row">
+										<div class="col-md-6">
+											<label for="jobtitle-input">Job Title</label>
+											<input type="text" class="form-control" placeholder="Enter job title" name="jobtitle-input">
+										</div>
+										<div class="col-md-6">
+											<label for="companyname-input">Company Name</label>
+											<input type="text" class="form-control" placeholder="Enter company name" name="companyname-input">
+										</div>
+									</div>
+								</p>
+								<p>
+									<div ng-controller="DatepickerPopupCtrl">
+										<div class="row">
+											<div class="col-md-6">
+												<label for="startdate-input">Start Date</label>
+												<p class="input-group">
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="Enter start date" name="startdate-input"/>
+													<span class="input-group-btn">
+													<button type="button" class="btn btn-default" ng-click="open1()">
+													<i class="glyphicon glyphicon-calendar"></i>
+													</button>
+													</span>
+												</p>
+											</div>
+											<div class="col-md-6">
+												<label for="enddate-input">End Date</label>
+												<p class="input-group" name="enddate-input-group">
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="Enter start date" name="enddate-input"/>
+													<span class="input-group-btn">
+													<button type="button" class="btn btn-default" ng-click="open2()">
+													<i class="glyphicon glyphicon-calendar"></i>
+													</button>
+													</span>
+												</p>
+											</div>
+										</div>
+									</div>
+								</p>
+								<p>
+									<div class="form-group">
+									  <label for="content">Content</label>
+									  <textarea id="editable" ui-tinymce="tinymceOptions" name="content" ng-model="workexperience.content" class="form-control" cols="30" rows="12" placeholder="Content"></textarea>
+									</div>
+								</p>
+							</div>
+							<p align="left">
+								<div class="btn-toolbar">
+									
+									<button type="submit" class="btn btn-default disabled">Move down</button>
+									<button type="submit" class="btn btn-default disabled">Move up</button>
+									<button type="submit" class="btn btn-danger disabled">Remove entry</button>
+								</div>
+							</p>
+							<hr>
+							<p align="left">
+								<button type="submit" class="btn btn-success">Create new entry</button>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</strong>
+	</body>
+</html>

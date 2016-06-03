@@ -64,6 +64,7 @@
     "serve-favicon": "~2.3.0",
     "socket.io": "~1.4.5",
     "swig": "~1.4.2",
+    "tinymce": "^4.3.12",
     "validator": "~5.1.0",
     "winston": "^2.2.0"
   },
