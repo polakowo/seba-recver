@@ -1,0 +1,13 @@
+<script src="/modules/cvs/client/controllers/sections/work-experience/work-experience.section.controller.js"></script>
+<div ng-controller="WorkExperienceSectionCtrl">
+  <h4>Work Experience</h4>
+  <hr>
+  <div ng-repeat="entry in section.entries">
+    <div ng-include="'/modules/cvs/client/views/entries/work-experience.entry.view.html'">
+      {% block content %}{% endblock %}
+  	</div>
+  </div>
+  <p align="left">
+    <button type="submit" class="btn btn-success" ng-click="section.addEntry()">Create new entry</button>
+  </p>
+</div>

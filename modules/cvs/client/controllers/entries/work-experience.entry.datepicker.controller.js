@@ -1,16 +1,11 @@
 angular.module('cvs').controller('DatepickerPopupCtrl', function ($scope) {
-  $scope.today = function() {
-    $scope.dt1 = new Date();
-    $scope.dt2 = new Date();
-  };
-  $scope.today();
 
   $scope.clear1 = function() {
-    $scope.dt1 = null;
+    $scope.entry.startDate = null;
   };
 
   $scope.clear2 = function() {
-    $scope.dt2 = null;
+    $scope.entry.endDate = null;
   };
 
   $scope.inlineOptions = {

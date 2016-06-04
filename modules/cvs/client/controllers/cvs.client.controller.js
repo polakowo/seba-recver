@@ -19,7 +19,7 @@
 
     // Configure tinymce options
     $scope.tinymceOptions = {
-      selector: '#myTextarea',
+      selector: 'textarea',
       theme: 'modern',
       plugins: [
         'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
