@@ -74,7 +74,7 @@ Configure and run the MongoDB database:
 $ mkdir data
 $ mkdir data/db
 $ mongod --dbpath data/db
-
+```
 
 In case of Angular errors install Bower dependencies:
 
