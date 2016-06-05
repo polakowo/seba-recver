@@ -13,10 +13,17 @@
     if(!$scope.currentSection.content.hasOwnProperty('entries')){
       $scope.currentSection.content.entries = [];
     }
+    
+    $scope.currentEntryId = 0;
+    $scope.generateEntryId = function() {
+      var newEntryId = $scope.currentEntryId;
+      $scope.currentEntryId = $scope.currentEntryId + 1;
+      return newEntryId;
+    };
 
     $scope.currentSection.content.addEntry = function() {
       var newEntry = {
-        'id': $scope.currentSection.content.entries.length,
+        'id': $scope.generateEntryId(),
         'jobTitle': '',
         'companyName': '',
         'startDate': new Date(),
