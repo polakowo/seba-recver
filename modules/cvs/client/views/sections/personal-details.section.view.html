@@ -1,0 +1,7 @@
+<div ng-controller="PersonalDetailsSectionCtrl">
+  <h4>{{currentSection.name}}</h4>
+  <hr>
+  <div ng-include="'/modules/cvs/client/views/entries/personal-details.entry.view.html'">
+    {% block content %}{% endblock %}
+	</div>
+</div>

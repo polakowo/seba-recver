@@ -3,11 +3,11 @@
 
   angular
     .module('cvs')
-    .controller('WorkExperienceSectionCtrl', WorkExperienceSectionCtrl);
+    .controller('EducationSectionCtrl', EducationSectionCtrl);
 
-  WorkExperienceSectionCtrl.$inject = ['$scope', '$state', '$window'];
+  EducationSectionCtrl.$inject = ['$scope', '$state', '$window'];
 
-  function WorkExperienceSectionCtrl($scope, $state, $window) {
+  function EducationSectionCtrl($scope, $state, $window) {
     // Methods for managing entries inside of a section
     
     if(!$scope.currentSection.content.hasOwnProperty('entries')){
@@ -17,8 +17,8 @@
     $scope.currentSection.content.addEntry = function() {
       var newEntry = {
         'id': $scope.currentSection.content.entries.length,
-        'jobTitle': '',
-        'companyName': '',
+        'courseName': '',
+        'institutionName': '',
         'startDate': new Date(),
         'endDate': new Date(),
         'otherInfo': '',

@@ -1,8 +1,8 @@
-<div ng-controller="WorkExperienceSectionCtrl">
+<div ng-controller="EducationSectionCtrl">
   <h4>{{currentSection.name}}</h4>
   <hr>
   <div ng-repeat="entry in currentSection.content.entries">
-    <div ng-include="'/modules/cvs/client/views/entries/work-experience.entry.view.html'">
+    <div ng-include="'/modules/cvs/client/views/entries/education.entry.view.html'">
       {% block content %}{% endblock %}
   	</div>
   </div>
