@@ -8,16 +8,13 @@
   CVsController.$inject = ['$scope', '$state', 'cvResolve', '$window', 'Authentication'];
 
   function CVsController($scope, $state, cv, $window, Authentication) {
-    
     $scope.cv = {};
-    
     $scope.currentSectionId = 0;
     $scope.generateSectionId = function() {
       var newSectionId = $scope.currentSectionId;
       $scope.currentSectionId = $scope.currentSectionId + 1;
       return newSectionId;
     };
-
     $scope.cv.sections = [{
       'id': $scope.generateSectionId(),
       'name': 'Personal details',
@@ -61,20 +58,16 @@
       'isFirst': true,
       'isLast': true
     }];
-
     $scope.currentSection = $scope.cv.sections[2];
-
     $scope.setCurrentSection = function(section) {
       $scope.currentSection = section;
     };
-    
     $scope.isSectionActive = function(section) {
       if (section.id === $scope.currentSection.id) {
         return 'active';
       }
       return '';
-    }
-    
+    };
     $scope.addSection = function() {
       if ($scope.newSectionName && $scope.newSectionName !== '') {
         $scope.newSectionName = $scope.newSectionName.charAt(0).toUpperCase() + $scope.newSectionName.slice(1);
@@ -85,14 +78,13 @@
           'content': {},
           'isFirst': true,
           'isLast': true
-        }
+        };
         $scope.cv.sections.push(newSection);
         $scope.setCurrentSection(newSection);
         $scope.newSectionName = '';
         $scope.reorderSections();
       }
-    }
-    
+    };
     $scope.removeSection = function(section) {
       var i = $scope.cv.sections.indexOf(section);
       $scope.cv.sections.splice(i, 1);
@@ -107,8 +99,6 @@
       var i = $scope.cv.sections.indexOf(section);
       if (!$scope.isSectionFirst(section)) {
         $scope.cv.sections.splice(i - 1, 0, $scope.cv.sections.splice(i, 1)[0]);
-      } else {
-        
       }
       $scope.reorderSections();
     };
@@ -133,7 +123,6 @@
       }
       return true;
     };
-    
     $scope.reorderSections = function() {
       var i;
       var section;
@@ -143,9 +132,7 @@
         section.isLast = $scope.isSectionLast(section);
       }
     };
-    
     $scope.reorderSections();
-
     // Configure tinymce options
     $scope.tinymceOptions = {
       selector: 'textarea#tinymce',

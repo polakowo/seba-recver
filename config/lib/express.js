@@ -10,7 +10,6 @@ var config = require('../config'),
   bodyParser = require('body-parser'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session),
-  favicon = require('serve-favicon'),
   compress = require('compression'),
   methodOverride = require('method-override'),
   cookieParser = require('cookie-parser'),
@@ -38,7 +37,6 @@ module.exports.initLocalVariables = function (app) {
   app.locals.cssFiles = config.files.client.css;
   app.locals.livereload = config.livereload;
   app.locals.logo = config.logo;
-  app.locals.favicon = config.favicon;
 
   // Passing the request url to environment locals
   app.use(function (req, res, next) {
@@ -65,9 +63,6 @@ module.exports.initMiddleware = function (app) {
     },
     level: 9
   }));
-
-  // Initialize favicon middleware
-  app.use(favicon(app.locals.favicon));
 
   // Enable logger (morgan) if enabled in the configuration file
   if (_.has(config, 'log.format')) {
