@@ -21,9 +21,7 @@ var CVSchema = new Schema({
     required: 'Title cannot be blank'
   },
   content: {
-    type: String,
-    default: '',
-    trim: true
+    type: Schema.Types.Mixed
   },
   user: {
     type: Schema.ObjectId,

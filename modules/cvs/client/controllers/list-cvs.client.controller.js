@@ -5,11 +5,9 @@
     .module('cvs')
     .controller('CVsListController', CVsListController);
 
-  CVsListController.$inject = ['CVsService'];
+  CVsListController.$inject = ['$scope', 'CVsService'];
 
-  function CVsListController(CVsService) {
-    var vm = this;
-
-    vm.cvs = CVsService.query();
+  function CVsListController($scope, CVsService) {
+    $scope.cvs = CVsService.query();
   }
 }());

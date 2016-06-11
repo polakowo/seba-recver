@@ -34,10 +34,10 @@ exports.invokeRolesPolicies = function () {
     roles: ['guest'],
     allows: [{
       resources: '/api/cvs',
-      permissions: ['get']
+      permissions: []
     }, {
       resources: '/api/cvs/:cvId',
-      permissions: ['get']
+      permissions: []
     }]
   }]);
 };

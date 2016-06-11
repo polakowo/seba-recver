@@ -1,7 +1,12 @@
 <div ng-controller="PersonalDetailsSectionCtrl">
-  <h4>{{currentSection.name}}</h4>
-  <hr>
-  <div ng-include="'/modules/cvs/client/views/entries/personal-details.entry.view.html'">
-    {% block content %}{% endblock %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="header-clickable panel-title" editable-text="currentSection.name">{{currentSection.name}}</h4>
+    </div>
+    <div class = "panel-body">
+      <div ng-include="'/modules/cvs/client/views/entries/personal-details.entry.view.html'">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
 	</div>
 </div>

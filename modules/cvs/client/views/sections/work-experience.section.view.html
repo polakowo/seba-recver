@@ -1,12 +1,17 @@
 <div ng-controller="WorkExperienceSectionCtrl">
-  <h4>{{currentSection.name}}</h4>
-  <hr>
-  <div ng-repeat="entry in currentSection.content.entries">
-    <div ng-include="'/modules/cvs/client/views/entries/work-experience.entry.view.html'">
-      {% block content %}{% endblock %}
-  	</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="header-clickable panel-title" editable-text="currentSection.name">{{currentSection.name}}</h4>
+    </div>
+    <div class = "panel-body">
+      <div ng-repeat="entry in currentSection.content.entries">
+        <div ng-include="'/modules/cvs/client/views/entries/work-experience.entry.view.html'">
+          {% block content %}{% endblock %}
+      	</div>
+      </div>
+      <p align="left">
+        <button type="submit" class="btn btn-success" ng-click="currentSection.content.addEntry()">Create new entry</button>
+      </p>
+    </div>
   </div>
-  <p align="left">
-    <button type="submit" class="btn btn-success" ng-click="currentSection.content.addEntry()">Create new entry</button>
-  </p>
 </div>

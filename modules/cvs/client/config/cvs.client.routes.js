@@ -18,7 +18,7 @@
         url: '',
         templateUrl: 'modules/cvs/client/views/list-cvs.client.view.html',
         controller: 'CVsListController',
-        controllerAs: 'vm',
+        controllerAs: 'listcvs',
         data: {
           pageTitle: 'CVs List'
         }
@@ -27,7 +27,7 @@
         url: '/create',
         templateUrl: 'modules/cvs/client/views/form-cv.client.view.html',
         controller: 'CVsController',
-        controllerAs: 'vm',
+        controllerAs: 'formcv',
         resolve: {
           cvResolve: newCV
         },
@@ -40,25 +40,13 @@
         url: '/:cvId/edit',
         templateUrl: 'modules/cvs/client/views/form-cv.client.view.html',
         controller: 'CVsController',
-        controllerAs: 'vm',
+        controllerAs: 'formcv',
         resolve: {
           cvResolve: getCV
         },
         data: {
           roles: ['user', 'admin'],
           pageTitle: 'Edit CV {{ cvResolve.title }}'
-        }
-      })
-      .state('cvs.view', {
-        url: '/:cvId',
-        templateUrl: 'modules/cvs/client/views/view-cv.client.view.html',
-        controller: 'CVsController',
-        controllerAs: 'vm',
-        resolve: {
-          cvResolve: getCV
-        },
-        data: {
-          pageTitle: 'CV {{ cvResolve.title }}'
         }
       });
   }

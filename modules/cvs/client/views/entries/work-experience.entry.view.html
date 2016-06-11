@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="WorkExperienceSectionCtrl">
   <p>
   <div class="row">
     <div class="col-md-6">
@@ -47,10 +47,10 @@
   </p>
 </div>
 <p align="left">
-<div class="btn-toolbar">
+<div class="btn-group">
   <button type="button" class="btn btn-default" ng-disabled="entry.isLast" ng-click="currentSection.content.moveEntryDown(entry)">Move down</button>
   <button type="button" class="btn btn-default" ng-disabled="entry.isFirst" ng-click="currentSection.content.moveEntryUp(entry)">Move up</button>
-  <button type="button" class="btn btn-danger" ng-click="currentSection.content.removeEntry(entry)">Remove entry</button>
+  <button type="button" class="btn btn-danger" ng-click="currentSection.content.removeEntry(entry)">Remove</button>
 </div>
 </p>
 <hr>

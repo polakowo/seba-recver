@@ -4,42 +4,58 @@
 		<strong>
 			<section>
 				<div class="page-header">
-					<h1>{{vm.cv._id ? 'Edit CV' : 'New CV'}}</h1>
-				</div>
-				<div class="btn-toolbar">
-					<button type="button" class="btn btn-default">Save</button>
-					<button type="button" class="btn btn-default">Preview</button>
-					<button type="button" class="btn btn-primary btn-space">Download</button>
-					<button type="button" class="btn btn-info">Need help?</button>
+					<h1>{{cv._id ? 'Edit CV' : 'New CV'}}</h1>
 				</div>
 				<div class="container-fluid">
-					<div class="row content">
-						<div class="col-md-4 sidenav">
-							<h4>Section Management</h4>
-							<hr>
-							<ul class="nav nav-pills nav-stacked">
-                <li ng-repeat="section in cv.sections" ng-class="isSectionActive(section)">
-                  <a href="" ng-click="setCurrentSection(section)">{{section.name}}</a>
-                </li>
-							</ul>
-							<p align="left">
-								<div class="btn-toolbar">
-                  <button type="button" class="btn btn-default" ng-disabled="currentSection.isLast" ng-click="moveSectionDown(currentSection)">Move down</button>
-                  <button type="button" class="btn btn-default" ng-disabled="currentSection.isFirst" ng-click="moveSectionUp(currentSection)">Move up</button>
-                  <button type="button" class="btn btn-danger" ng-click="removeSection(currentSection)">Remove section</button>
-								</div>
-							</p>
-							<br>
-							<h4>Custom Sections</h4>
-							<hr>
-							<p align="left">
-                <form ng-submit="addSection()">
-                  <input type="text" class="form-control" placeholder="Enter desired section name" ng-model="newSectionName">
+					<div class="row">
+						<div class="col-lg-4 sidenav">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">CV Management</h4>
+                </div>
+                <div class = "panel-body">
+                  <label for="cvtitle-input">CV title</label>
+                  <input type="text" class="form-control" placeholder="Enter your CV title" ng-model="cv.title" name="cvtitle">
                   <br>
-                  <button type="submit" class="btn btn-success">Create new section</button>
-                </form>
-							</p>
-							
+          				<div class="btn-group">
+          					<button type="button" class="btn btn-default" ng-click="save(true)">Save</button>
+          					<button type="button" class="btn btn-default">Preview</button>
+          					<button type="button" class="btn btn-primary">Download</button>
+          				</div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">Section Management</h4>
+                </div>
+                <div class = "panel-body">
+    							<ul class="nav nav-pills nav-stacked">
+                    <li ng-repeat="section in cv.content.sections" ng-class="isSectionActive(section)">
+                      <a href="" ng-click="setCurrentSection(section)">{{section.name}}</a>
+                    </li>
+    							</ul>
+    							<p align="left">
+    								<div class="btn-group">
+                      <button type="button" class="btn btn-default" ng-disabled="currentSection.isLast" ng-click="moveSectionDown(currentSection)">Move down</button>
+                      <button type="button" class="btn btn-default" ng-disabled="currentSection.isFirst" ng-click="moveSectionUp(currentSection)">Move up</button>
+                      <button type="button" class="btn btn-danger" ng-click="removeSection(currentSection)">Remove</button>
+    								</div>
+    							</p>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">Custom Sections</h4>
+                </div>
+                <div class = "panel-body">
+  							  <p align="left">
+                  <form ng-submit="addSection()">
+                    <input type="text" class="form-control" placeholder="Enter desired section name" ng-model="newSectionName">
+                    <br>
+                    <button type="submit" class="btn btn-success">Create new section</button>
+                  </form>
+                </div>
+              </div>
 						</div>
 						<div class="col-md-8" ng-model="currentSection" ng-include="currentSection.path">
               {% block content %}{% endblock %}
