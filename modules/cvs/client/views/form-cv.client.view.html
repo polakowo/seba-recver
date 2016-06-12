@@ -14,14 +14,27 @@
                   <h4 class="panel-title">CV Management</h4>
                 </div>
                 <div class = "panel-body">
-                  <label for="cvtitle-input">CV title</label>
-                  <input type="text" class="form-control" placeholder="Enter your CV title" ng-model="cv.title" name="cvtitle">
+                  <input type="text" class="form-control" placeholder="CV title" ng-model="cv.title">
+                  <div ng-show="showHints">
+                    <h5><span class="label label-default">e.g. Application for CIO of Google</span></h5>
+                  </div>
                   <br>
           				<div class="btn-group">
-          					<button type="button" class="btn btn-default" ng-click="save(true)">Save</button>
-          					<button type="button" class="btn btn-default">Preview</button>
-          					<button type="button" class="btn btn-primary">Download</button>
+                    <button type="button" class="btn btn-default" aria-label="Save" ng-click="save(true)">
+                      <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Preview">
+                      <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Preview
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Download">
+                      <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
+                    </button>
           				</div>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default" aria-label="Show hints" ng-click="showHints = !showHints">
+                      <span class="glyphicon glyphicon-education" aria-hidden="true"></span>{{showHints ? ' Hide hints' : ' Show hints'}}
+                    </button>
+                  </div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -35,11 +48,18 @@
                     </li>
     							</ul>
     							<p align="left">
-    								<div class="btn-group">
-                      <button type="button" class="btn btn-default" ng-disabled="currentSection.isLast" ng-click="moveSectionDown(currentSection)">Move down</button>
-                      <button type="button" class="btn btn-default" ng-disabled="currentSection.isFirst" ng-click="moveSectionUp(currentSection)">Move up</button>
-                      <button type="button" class="btn btn-danger" ng-click="removeSection(currentSection)">Remove</button>
-    								</div>
+                    
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default" aria-label="Move down" ng-click="moveSectionDown(currentSection)" ng-disabled="currentSection.isLast">
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                      </button>
+                      <button type="button" class="btn btn-default" aria-label="Move up" ng-click="moveSectionUp(currentSection)" ng-disabled="currentSection.isFirst">
+                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                      </button>
+                      <button type="button" class="btn btn-default" aria-label="Remove" ng-click="removeSection(currentSection)">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
+                      </button>
+                    </div>
     							</p>
                 </div>
               </div>
@@ -51,8 +71,14 @@
   							  <p align="left">
                   <form ng-submit="addSection()">
                     <input type="text" class="form-control" placeholder="Enter desired section name" ng-model="newSectionName">
+                    <div ng-show="showHints">
+                      <h5><span class="label label-default">e.g. Hobbies & Interests, References</span></h5>
+                    </div>
+                    
                     <br>
-                    <button type="submit" class="btn btn-success">Create new section</button>
+                    <button type="submit" class="btn btn-success" aria-label="Create new section">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New section
+                    </button>
                   </form>
                 </div>
               </div>

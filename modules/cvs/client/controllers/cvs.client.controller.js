@@ -11,6 +11,8 @@
  
     $scope.cv = cv;
     
+    $scope.showHints = true;
+    
     if (!$scope.cv.hasOwnProperty('content')) {
       $scope.cv.title = 'My new CV!'
       $scope.cv.content = {
@@ -23,8 +25,10 @@
               emailAddress: '',
               phoneNumber: '',
               website: '',
-              addressLine1: '',
-              addressLine2: ''
+              streetAddress: '',
+              postalCode: '',
+              city: '',
+              country: ''
             },
             'isFirst': true,
             'isLast': false
@@ -69,22 +73,6 @@
                   'isLast': true
                 }
               ]
-            },
-            'isFirst': false,
-            'isLast': false
-          }, {
-            'name': 'Hobbies and interests',
-            'path': '/modules/cvs/client/views/sections/general.section.view.html',
-            'content': {
-              content: ''
-            },
-            'isFirst': false,
-            'isLast': false
-          }, {
-            'name': 'References',
-            'path': '/modules/cvs/client/views/sections/general.section.view.html',
-            'content': {
-              content: ''
             },
             'isFirst': false,
             'isLast': true
@@ -183,7 +171,7 @@
     // Remove existing CV
     $scope.remove = function() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        $scope.cv.$remove($state.go('cv.list'));
+        $scope.cv.$remove($state.go('cvs.list'));
       }
     }
 

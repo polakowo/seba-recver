@@ -3,7 +3,7 @@
     <h1>CVs</h1>
   </div>
   <div class="list-group">
-    <a ng-repeat="cv in cvs" ui-sref="cvs.edit({ cvId: cv._id })" class="list-group-item">
+    <a ng-repeat="cv in cvs" ui-sref="cvs.view({ cvId: cv._id })" class="list-group-item">
       <small class="list-group-item-text">
         Posted on
         <span ng-bind="cv.created | date:'mediumDate'"></span>
@@ -15,6 +15,6 @@
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="cvs.$resolved && !cvs.length">
-    No CVs yet, why don't you <a ui-sref="cvs.create">create one</a>?
+    No cvs yet, why don't you <a ui-sref="cvs.create">create one</a>?
   </div>
 </section>
