@@ -2,15 +2,15 @@
   <p>
   <div class="row">
     <div class="col-md-6">
-      <input type="text" class="form-control" placeholder="Job title" ng-model="entry.jobTitle">
-      <div ng-show="showHints">
-        <h5><span class="label label-default">e.g. Chief Information Officer</span></h5>
+      <div class="input-group">
+        <span class="input-group-addon">Job title</span>
+        <input type="text" class="form-control" placeholder="CIO" ng-model="entry.jobTitle">
       </div>
     </div>
     <div class="col-md-6">
-      <input type="text" class="form-control" placeholder="Company name" ng-model="entry.companyName">
-      <div ng-show="showHints">
-        <h5><span class="label label-default">e.g. Apple</span></h5>
+      <div class="input-group">
+        <span class="input-group-addon">Company name</span>
+        <input type="text" class="form-control" placeholder="Apple" ng-model="entry.companyName">
       </div>
     </div>
   </div>
@@ -19,29 +19,25 @@
   <div ng-controller="DatepickerPopupCtrl">
     <div class="row">
       <div class="col-md-6">
-        <p class="input-group">
-          <input type="text" placeholder="Start date" class="form-control" uib-datepicker-popup="{{format}}" ng-model="entry.startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="Enter start date"/>
+        <div class="input-group">
+          <span class="input-group-addon">Start date</span>
+          <input type="text" placeholder="01-April-2015" class="form-control" uib-datepicker-popup="{{format}}" ng-model="entry.startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
           <span class="input-group-btn">
           <button type="button" class="btn btn-default" ng-click="open1()">
           <i class="glyphicon glyphicon-calendar"></i>
           </button>
           </span>
-        </p>
-        <div ng-show="showHints">
-          <h5><span class="label label-default">from e.g. 01-April-2015</span></h5>
         </div>
       </div>
       <div class="col-md-6">
-        <p class="input-group" name="enddate-input-group">
-          <input type="text" placeholder="End date" class="form-control" uib-datepicker-popup="{{format}}" ng-model="entry.endDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="Enter start date"/>
+        <div class="input-group" name="enddate-input-group">
+          <span class="input-group-addon">End date</span>
+          <input type="text" placeholder="01-April-2016" class="form-control" uib-datepicker-popup="{{format}}" ng-model="entry.endDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
           <span class="input-group-btn">
           <button type="button" class="btn btn-default" ng-click="open2()">
           <i class="glyphicon glyphicon-calendar"></i>
           </button>
           </span>
-        </p>
-        <div ng-show="showHints">
-          <h5><span class="label label-default">to e.g. 01-April-2016</span></h5>
         </div>
       </div>
     </div>

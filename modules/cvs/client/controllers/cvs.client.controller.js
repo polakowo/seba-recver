@@ -11,8 +11,6 @@
  
     $scope.cv = cv;
     
-    $scope.showHints = true;
-    
     if (!$scope.cv.hasOwnProperty('content')) {
       $scope.cv.title = 'My new CV!'
       $scope.cv.content = {
