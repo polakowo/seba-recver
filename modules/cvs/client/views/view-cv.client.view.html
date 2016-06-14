@@ -3,12 +3,19 @@
     <h1 ng-bind="vm.cv.title"></h1>
   </div>
   <div class="pull-right" ng-show="vm.cv.isCurrentUserOwner">
-    <a class="btn btn-primary" ui-sref="cvs.edit({ cvId: vm.cv._id })">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" ng-click="vm.remove()">
-      <i class="glyphicon glyphicon-trash"></i>
-    </a>
+    <div class="btn-group">
+    <button type="button" class="btn btn-default" aria-label="Preview" ng-click="vm.openModal('lg')">
+      <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Preview
+    </button>
+    <button type="button" class="btn btn-default" ui-sref="cvs.edit({ cvId: vm.cv._id })">
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+    </button>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default" ng-click="vm.remove()">
+      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+    </button>
+    </div>
   </div>
   <small>
     <em class="text-muted">

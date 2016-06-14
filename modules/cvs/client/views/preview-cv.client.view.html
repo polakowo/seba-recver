@@ -1,17 +1,45 @@
 <section>
   <div class="modal-header">
-      <h3 class="modal-title">Choose a template for preview</h3>
+    <h3 class="modal-title">Choose a template for preview</h3>
   </div>
   <div class="modal-body">
-      <ul>
-          <li ng-repeat="template in pcvCtrl.templates">
-              <a href="#" ng-click="$event.preventDefault(); pcvCtrl.selected.template = template">{{ template }}</a>
-          </li>
-      </ul>
-      Selected: <b>{{ pcvCtrl.selected.template }}</b>
+    <ul>
+        <li ng-repeat="template in pcvCtrl.templates">
+            <a href="#" ng-click="$event.preventDefault(); pcvCtrl.selected.template = template;">{{ template.name }}</a>
+        </li>
+    </ul>
+    <hr>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="header-clickable panel-title">Preview - {{ pcvCtrl.selected.template.name }}</h4>
+      </div>
+      <div class="panel-body">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" id="pdfPreview_pdf" type="application/pdf" src="">
+      
+          </iframe>
+        </div>
+        <div id="pdfPreview_html" class="ng-hide">
+    			<div ng-include="pcvCtrl.selected.template.path">
+            {% block content %}{% endblock %}
+    			</div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
-      <button class="btn btn-default" type="button" ng-click="pcvCtrl.download()">Download</button>
-      <button class="btn btn-default" type="button" ng-click="pcvCtrl.close()">Close</button>
+    <div class="btn-group">
+      <button class="btn btn-default" type="button" ng-click="pcvCtrl.composePDF(true)">
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Preview
+      </button>
+      <button class="btn btn-default" type="button" ng-click="pcvCtrl.composePDF(false)">
+        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
+      </button>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-default" type="button" ng-click="pcvCtrl.close()">
+        Close
+      </button>
+    </div>
   </div>
 </section>

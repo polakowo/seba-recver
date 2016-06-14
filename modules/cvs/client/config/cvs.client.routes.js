@@ -20,7 +20,7 @@
         controller: 'ListCVsCtrl',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'CVs List'
+          pageTitle: 'List CVs'
         }
       })
       .state('cvs.create', {
@@ -33,7 +33,7 @@
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'CVs Create'
+          pageTitle: 'Create CV'
         }
       })
       .state('cvs.edit', {
