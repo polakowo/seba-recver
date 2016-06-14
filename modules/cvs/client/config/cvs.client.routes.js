@@ -17,7 +17,7 @@
       .state('cvs.list', {
         url: '',
         templateUrl: 'modules/cvs/client/views/list-cvs.client.view.html',
-        controller: 'CVsListController',
+        controller: 'ListCVsCtrl',
         controllerAs: 'vm',
         data: {
           pageTitle: 'CVs List'
@@ -26,7 +26,7 @@
       .state('cvs.create', {
         url: '/create',
         templateUrl: 'modules/cvs/client/views/form-cv.client.view.html',
-        controller: 'CVsController',
+        controller: 'FormCVCtrl',
         controllerAs: 'vm',
         resolve: {
           cvResolve: newCV
@@ -39,7 +39,7 @@
       .state('cvs.edit', {
         url: '/:cvId/edit',
         templateUrl: 'modules/cvs/client/views/form-cv.client.view.html',
-        controller: 'CVsController',
+        controller: 'FormCVCtrl',
         controllerAs: 'vm',
         resolve: {
           cvResolve: getCV
@@ -52,7 +52,7 @@
       .state('cvs.view', {
         url: '/:cvId',
         templateUrl: 'modules/cvs/client/views/view-cv.client.view.html',
-        controller: 'CVsController',
+        controller: 'ViewCVCtrl',
         controllerAs: 'vm',
         resolve: {
           cvResolve: getCV

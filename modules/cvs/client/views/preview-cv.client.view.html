@@ -1,0 +1,17 @@
+<section>
+  <div class="modal-header">
+      <h3 class="modal-title">Choose a template for preview</h3>
+  </div>
+  <div class="modal-body">
+      <ul>
+          <li ng-repeat="template in pcvCtrl.templates">
+              <a href="#" ng-click="$event.preventDefault(); pcvCtrl.selected.template = template">{{ template }}</a>
+          </li>
+      </ul>
+      Selected: <b>{{ pcvCtrl.selected.template }}</b>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-default" type="button" ng-click="pcvCtrl.download()">Download</button>
+      <button class="btn btn-default" type="button" ng-click="pcvCtrl.close()">Close</button>
+  </div>
+</section>

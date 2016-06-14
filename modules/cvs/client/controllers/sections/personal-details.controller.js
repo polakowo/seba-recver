@@ -5,9 +5,10 @@
     .module('cvs')
     .controller('PersonalDetailsSectionCtrl', PersonalDetailsSectionCtrl);
 
-  PersonalDetailsSectionCtrl.$inject = ['$scope', '$state', '$window'];
+  PersonalDetailsSectionCtrl.$inject = ['$state', '$window'];
 
-  function PersonalDetailsSectionCtrl($scope, $state, $window) {
-    
+  function PersonalDetailsSectionCtrl($state, $window) {
+
+    var vm = this;
   }
 }());

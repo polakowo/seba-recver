@@ -1,12 +1,78 @@
-<div ng-controller="PersonalDetailsSectionCtrl">
+<section ng-controller="PersonalDetailsSectionCtrl as pdsCtrl" ng-init="pdsCtrl.currentSection=vm.currentSection">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="header-clickable panel-title">{{currentSection.name}}</h4>
+      <h4 class="header-clickable panel-title">{{pdsCtrl.currentSection.name}}</h4>
     </div>
     <div class = "panel-body">
-      <div ng-include="'/modules/cvs/client/views/entries/personal-details.entry.view.html'">
-        {% block content %}{% endblock %}
+      <p>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-addon">Full name</span>
+            <input type="text" class="form-control" placeholder="Max Mustermann" ng-model="pdsCtrl.currentSection.content.fullName">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-addon">E-mail address</span>
+            <input type="text" class="form-control" placeholder="max-m@gmail.com" ng-model="pdsCtrl.currentSection.content.emailAddress">
+          </div>
+        </div>
       </div>
+      </p>
+      <p>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-addon">Phone number</span>
+            <input type="text" class="form-control" placeholder="(+49) 171 123 4567" ng-model="pdsCtrl.currentSection.content.phoneNumber">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-addon">Website</span>
+            <input type="text" class="form-control" placeholder="www.max-m.de" ng-model="pdsCtrl.currentSection.content.website">
+          </div>
+        </div>
+      </div>
+      </p>
+      <hr>
+      <p>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <span class="input-group-addon">Street address</span>
+                  <input type="text" class="form-control" placeholder="Arcisstraße 21" ng-model="pdsCtrl.currentSection.content.streetAddress">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group">
+                  <span class="input-group-addon">Postal code</span>
+                  <input type="text" class="form-control" placeholder="80333" ng-model="pdsCtrl.currentSection.content.postalCode">
+                </div>
+              </div>
+            </div>
+            </p>
+            <p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <span class="input-group-addon">City</span>
+                  <input type="text" class="form-control" placeholder="Munich" ng-model="pdsCtrl.currentSection.content.city">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group">
+                  <span class="input-group-addon">Country</span>
+                  <input type="text" class="form-control" placeholder="Germany" ng-model="pdsCtrl.currentSection.content.country">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p>
     </div>
 	</div>
-</div>
+</section>

@@ -5,9 +5,11 @@
     .module('cvs')
     .controller('GeneralSectionCtrl', GeneralSectionCtrl);
 
-  GeneralSectionCtrl.$inject = ['$scope', '$state', '$window'];
+  GeneralSectionCtrl.$inject = ['$state', '$window'];
 
-  function GeneralSectionCtrl($scope, $state, $window) {
-    
+  function GeneralSectionCtrl($state, $window) {
+
+    var vm = this;
+
   }
 }());

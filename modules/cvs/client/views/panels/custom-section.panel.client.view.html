@@ -1,0 +1,22 @@
+<section>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">Custom Section</h4>
+    </div>
+    <div class = "panel-body">
+      <form ng-submit="vm.addSection()">
+        <div class="input-group">
+          <span class="input-group-addon">Section name</span>
+          <input type="text" class="form-control" placeholder="Section name" ng-model="vm.newSectionName">
+        </div>
+        <div>
+          <h5><span class="label label-default">e.g. Hobbies & Interests, References</span></h5>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success" aria-label="Add section">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add section
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

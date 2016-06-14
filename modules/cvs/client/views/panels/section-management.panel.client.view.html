@@ -1,0 +1,26 @@
+<section>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">Section Management</h4>
+    </div>
+    <div class = "panel-body">
+    	<ul class="nav nav-pills nav-stacked">
+        <li ng-repeat="section in vm.cv.content.sections" ng-class="vm.isSectionActive(section)">
+          <a href="" ng-click="vm.setCurrentSection(section)">{{section.name}}</a>
+        </li>
+    	</ul>
+    	<br>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" aria-label="Move down" ng-click="vm.moveSectionDown(vm.currentSection)" ng-disabled="vm.currentSection.isLast">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Move up" ng-click="vm.moveSectionUp(vm.currentSection)" ng-disabled="vm.currentSection.isFirst">
+          <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Remove" ng-click="vm.removeSection(vm.currentSection)" ng-disabled="!vm.currentSection.optional">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

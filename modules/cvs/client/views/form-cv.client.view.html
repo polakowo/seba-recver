@@ -1,96 +1,23 @@
-<!DOCTYPE html>
-<html>
-	<body>
-		<strong>
-			<section>
-				<div class="page-header">
-					<h1>{{cv._id ? 'Edit CV' : 'New CV'}}</h1>
-				</div>
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-lg-4 sidenav">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">CV Management</h4>
-                </div>
-                <div class = "panel-body">
-                  
-                  <div class="input-group">
-                    <span class="input-group-addon">CV title</span>
-                    <input type="text" class="form-control" placeholder="CV title" ng-model="cv.title">
-                  </div>
-                  <div>
-                    <h5><span class="label label-default">e.g. Application for CIO of Google</span></h5>
-                  </div>
-                  <br>
-          				<div class="btn-group">
-                    <button type="button" class="btn btn-default" aria-label="Save" ng-click="save(true)">
-                      <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-                    </button>
-                    <button type="button" class="btn btn-default" aria-label="Preview">
-                      <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Preview
-                    </button>
-                    <button type="button" class="btn btn-default" aria-label="Download">
-                      <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
-                    </button>
-          				</div>
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">Section Management</h4>
-                </div>
-                <div class = "panel-body">
-    							<ul class="nav nav-pills nav-stacked">
-                    <li ng-repeat="section in cv.content.sections" ng-class="isSectionActive(section)">
-                      <a href="" ng-click="setCurrentSection(section)">{{section.name}}</a>
-                    </li>
-    							</ul>
-    							<p align="left">
-                    
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default" aria-label="Move down" ng-click="moveSectionDown(currentSection)" ng-disabled="currentSection.isLast">
-                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-                      </button>
-                      <button type="button" class="btn btn-default" aria-label="Move up" ng-click="moveSectionUp(currentSection)" ng-disabled="currentSection.isFirst">
-                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-                      </button>
-                      <button type="button" class="btn btn-default" aria-label="Remove" ng-click="removeSection(currentSection)">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
-                      </button>
-                    </div>
-    							</p>
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">Custom Sections</h4>
-                </div>
-                <div class = "panel-body">
-  							  <p align="left">
-                  <form ng-submit="addSection()">
-                    <div class="input-group">
-                      <span class="input-group-addon">Section name</span>
-                      <input type="text" class="form-control" placeholder="Enter desired section name" ng-model="newSectionName">
-                    </div>
-                    <div>
-                      <h5><span class="label label-default">e.g. Hobbies & Interests, References</span></h5>
-                    </div>
-                    
-                    <br>
-                    <button type="submit" class="btn btn-success" aria-label="Create new section">
-                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New section
-                    </button>
-                  </form>
-                </div>
-              </div>
-						</div>
-						<div class="col-md-8" ng-model="currentSection" ng-include="currentSection.path">
-              {% block content %}{% endblock %}
-						</div>
-					</div>
-				</div>
-			</section>
-		</strong>
-	</body>
-</html>
+<section>
+	<div class="page-header">
+		<h1>{{cv._id ? 'Edit CV' : 'New CV'}}</h1>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4 sidenav">
+        <div ng-include="'/modules/cvs/client/views/panels/cv-management.panel.client.view.html'">
+          {% block content %}{% endblock %}
+        </div>
+        <div ng-include="'/modules/cvs/client/views/panels/section-management.panel.client.view.html'">>
+          {% block content %}{% endblock %}
+        </div>
+        <div ng-include="'/modules/cvs/client/views/panels/custom-section.panel.client.view.html'">>
+          {% block content %}{% endblock %}
+        </div>
+			</div>
+			<div class="col-md-8" ng-model="vm.currentSection" ng-include="vm.currentSection.path">
+        {% block content %}{% endblock %}
+			</div>
+		</div>
+	</div>
+</section>
