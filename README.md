@@ -82,6 +82,10 @@ In case of Angular errors install Bower dependencies:
 $ bower install
 ```
 
+Copy paste plugins form jsPDF repository (https://github.com/MrRio/jsPDF) into public/lib/jspdf/plugins
+
+
+
 ## Running your application with Gulp
 
 After the install process, you can easily run your project with:

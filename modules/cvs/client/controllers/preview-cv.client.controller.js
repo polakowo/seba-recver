@@ -5,9 +5,9 @@
     .module('cvs')
     .controller('PreviewCVCtrl', PreviewCVCtrl);
 
-  PreviewCVCtrl.$inject = ['$uibModalInstance', 'cv', '$window'];
+  PreviewCVCtrl.$inject = ['$rootScope', '$uibModalInstance', 'cv', '$window', 'FileSaver', 'Blob', '$templateRequest', '$compile', '$timeout'];
 
-  function PreviewCVCtrl($uibModalInstance, cv, $window) {
+  function PreviewCVCtrl($rootScope, $uibModalInstance, cv, $window, FileSaver, Blob, $templateRequest, $compile, $timeout) {
 
     var vm = this;
 
@@ -37,37 +37,46 @@
     };
 
     vm.composePDF = function(preview) {
-      var pdf = new jsPDF('p', 'pt', 'letter');
-      var source = angular.element(document.querySelector('#pdfPreview_html'))[0];
-      var specialElementHandlers = {
-        '#bypassme': function(element, renderer) {
-          return true;
-        }
-      };
-      var margins = {
-        top: 80,
-        bottom: 60,
-        left: 40,
-        width: 522
-      };
-      pdf.fromHTML(
-        source,
-        margins.left,
-        margins.top,
-        {
-          'width': margins.width,
-          'elementHandlers': specialElementHandlers
-        },
-        function (dispose) {
-          if (preview) {
-            var uristring = pdf.output('datauristring');
-            angular.element(document.querySelector('#pdfPreview_pdf')).attr('src', uristring);
-          } else {
-            pdf.save('sample-file.pdf');
-          }
-        },
-        margins
-      );
+      $templateRequest(vm.selected.template.path).then(function(template) {
+        var scope = $rootScope.$new();
+        scope.cv = vm.cv;
+        var compiled = $compile(template)(scope);
+        $timeout(function() {
+          var final = compiled[0].innerHTML;
+          var pdf = new jsPDF('p', 'pt', 'a4');
+          var specialElementHandlers = {
+            '#bypassme': function(element, renderer) {
+              return true;
+            }
+          };
+          var margins = {
+            top: 80,
+            bottom: 60,
+            left: 40,
+            width: 522
+          };
+          pdf.fromHTML(
+            final,
+            margins.left,
+            margins.top,
+            {
+              'width': margins.width,
+              'elementHandlers': specialElementHandlers,
+              'pagesplit': true
+            },
+            function (dispose) {
+              if (preview) {
+                var uristring = pdf.output('datauristring');
+                angular.element(document.querySelector('#pdfPreview_pdf')).attr('src', uristring);
+              } else {
+                var blob = pdf.output('blob');
+                FileSaver.saveAs(blob, vm.cv.title.replace(/\s/g, '_'));
+              }
+            },
+            margins
+          );
+        });
+      });
     };
   }
 }());
