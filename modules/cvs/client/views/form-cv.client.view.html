@@ -1,4 +1,4 @@
-<section>
+<section ng-init="vm.init()">
 	<div class="page-header">
 		<h1>{{vm.cv._id ? 'Edit CV' : 'New CV'}}</h1>
 	</div>
@@ -8,14 +8,14 @@
         <div ng-include="'/modules/cvs/client/views/panels/cv-management.panel.client.view.html'">
           {% block content %}{% endblock %}
         </div>
-        <div ng-include="'/modules/cvs/client/views/panels/section-management.panel.client.view.html'">>
+        <div ng-include="'/modules/cvs/client/views/panels/section-management.panel.client.view.html'"> 
           {% block content %}{% endblock %}
         </div>
-        <div ng-include="'/modules/cvs/client/views/panels/custom-section.panel.client.view.html'">>
+        <div ng-include="'/modules/cvs/client/views/panels/custom-section.panel.client.view.html'">
           {% block content %}{% endblock %}
         </div>
 			</div>
-			<div class="col-md-8" ng-model="vm.currentSection" ng-include="vm.currentSection.path">
+			<div class="col-md-8" ng-model="vm.active.section" ng-include="vm.active.section.path">
         {% block content %}{% endblock %}
 			</div>
 		</div>

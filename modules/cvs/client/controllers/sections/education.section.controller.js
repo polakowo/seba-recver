@@ -5,74 +5,92 @@
     .module('cvs')
     .controller('EducationSectionCtrl', EducationSectionCtrl);
 
-  EducationSectionCtrl.$inject = ['$state', '$window'];
+  EducationSectionCtrl.$inject = ['$scope', '$state', '$window'];
 
-  function EducationSectionCtrl($state, $window) {
+  function EducationSectionCtrl($scope, $state, $window) {
 
     var vm = this;
 
-    vm.addEntry = function() {
+    vm.init = function(section) {
+      vm.section = section;
+      vm.mEntries = [];
+
+      for (var i = 0; i < vm.section.content.entries.length; i++) {
+        vm.mEntries.push({
+          entry: vm.section.content.entries[i],
+          isFirst: vm.isEntryFirst(i),
+          isLast: vm.isEntryLast(i)
+        });
+      }
+    };
+
+    vm.updateMEntries = function() {
+      for (var i = 0; i < vm.mEntries.length; i++) {
+        vm.mEntries[i].isFirst = vm.isMEntryFirst(i);
+        vm.mEntries[i].isLast = vm.isMEntryLast(i);
+      }
+    };
+
+    vm.addMEntry = function() {
       var newEntry = {
-        'content': {
-          'courseTitle': '',
-          'institutionName': '',
-          'startDate': null,
-          'endDate': null,
-          'otherInfo': ''
-        },
-        'isFirst': true,
-        'isLast': true
+        content: {
+          courseTitle: '',
+          institutionName: '',
+          startDate: '',
+          endDate: '',
+          otherInfo: ''
+        }
       };
-      vm.currentSection.content.entries.push(newEntry);
-      vm.reorderEntries();
+      vm.section.content.entries.push(newEntry);
+      vm.mEntries.push({
+        entry: newEntry,
+        isFirst: vm.isEntryFirst(vm.section.content.entries.length - 1),
+        isLast: vm.isEntryLast(vm.section.content.entries.length - 1)
+      });
+      vm.updateMEntries();
     };
 
-    vm.removeEntry = function(entry) {
-      var i = vm.currentSection.content.entries.indexOf(entry);
-      vm.currentSection.content.entries.splice(i, 1);
-      vm.reorderEntries();
+    vm.removeMEntry = function(entry) {
+      var i = vm.mEntries.indexOf(entry);
+      vm.section.content.entries.splice(i, 1);
+      vm.mEntries.splice(i, 1);
+      vm.updateMEntries();
     };
 
-    vm.moveEntryUp = function(entry) {
-      var i = vm.currentSection.content.entries.indexOf(entry);
-      if (!vm.isEntryFirst(entry)) {
-        vm.currentSection.content.entries.splice(i - 1, 0, vm.currentSection.content.entries.splice(i, 1)[0]);
+    vm.moveMEntryUp = function(entry) {
+      var i = vm.mEntries.indexOf(entry);
+      if (!vm.isMEntryFirst(i)) {
+        vm.section.content.entries.splice(i - 1, 0, vm.section.content.entries.splice(i, 1)[0]);
+        vm.mEntries.splice(i - 1, 0, vm.mEntries.splice(i, 1)[0]);
       }
-      vm.reorderEntries();
+      vm.updateMEntries();
     };
 
-    vm.moveEntryDown = function(entry) {
-      var i = vm.currentSection.content.entries.indexOf(entry);
-      if (!vm.isEntryLast(entry)) {
-        vm.currentSection.content.entries.splice(i + 1, 0, vm.currentSection.content.entries.splice(i, 1)[0]);
+    vm.moveMEntryDown = function(entry) {
+      var i = vm.mEntries.indexOf(entry);
+      if (!vm.isMEntryLast(i)) {
+        vm.section.content.entries.splice(i + 1, 0, vm.section.content.entries.splice(i, 1)[0]);
+        vm.mEntries.splice(i + 1, 0, vm.mEntries.splice(i, 1)[0]);
       }
-      vm.reorderEntries();
+      vm.updateMEntries();
     };
 
-    vm.isEntryFirst = function(entry) {
-      var i = vm.currentSection.content.entries.indexOf(entry);
-      if (i > 0) {
-        return false;
-      }
-      return true;
+    // Called by methods which use existing mEntries
+    vm.isMEntryFirst = function(i) {
+      return !(i > 0);
     };
 
-    vm.isEntryLast = function(entry) {
-      var i = vm.currentSection.content.entries.indexOf(entry);
-      if (i < vm.currentSection.content.entries.length - 1) {
-        return false;
-      }
-      return true;
+    vm.isMEntryLast = function(i) {
+      return !(i < vm.mEntries.length - 1);
     };
 
-    vm.reorderEntries = function() {
-      var i;
-      var entry;
-      for (i = 0; i < vm.currentSection.content.entries.length; i++) {
-        entry = vm.currentSection.content.entries[i];
-        entry.isFirst = vm.isEntryFirst(entry);
-        entry.isLast = vm.isEntryLast(entry);
-      }
+    // Called by methods which add new mEntries
+    vm.isEntryFirst = function(i) {
+      return !(i > 0);
+    };
+
+    vm.isEntryLast = function(i) {
+      return !(i < vm.section.content.entries.length - 1);
     };
   }
 }());

@@ -1,0 +1,118 @@
+(function () {
+  'use strict';
+
+  angular
+    .module('cvs')
+    .controller('CVManagementCtrl', CVManagementCtrl);
+
+  CVManagementCtrl.$inject = ['$scope', '$state', '$window', '$uibModal', 'Authentication'];
+
+  function CVManagementCtrl($scope, $state, $window, $uibModal, Authentication) {
+
+    var vm = this;
+
+    vm.init = function(cv) {
+      vm.cv = cv;
+
+      vm.progress = 0;
+
+      $scope.$watch('vm.cv', function(newValue, oldValue) {
+        vm.updateProgress();
+      }, true);
+
+      vm.modalAnimationsEnabled = false;
+    };
+
+    // Configure and update progress bar
+    vm.updateProgress = function() {
+      var progress = 0.0;
+
+      var section;
+      var entry;
+      var key;
+
+      var sectionsCount = vm.cv.content.sections.length;
+      var entriesCount = 0;
+      var keysInEntryCount = 0;
+
+      var progressPerSection = 100.0 / sectionsCount;
+      var progressPerEntryPerSection = 0.0;
+      var progressPerItemPerEntry = 0.0;
+
+      for (var i = 0; i < sectionsCount; i++) {
+        section = vm.cv.content.sections[i];
+        entriesCount = section.content.entries.length;
+        if (entriesCount > 0) {
+          progressPerEntryPerSection = progressPerSection / entriesCount;
+        } else {
+          progressPerEntryPerSection = progressPerSection;
+        }
+
+        for (var j = 0; j < entriesCount; j++) {
+          entry = section.content.entries[j];
+          keysInEntryCount = Object.keys(entry.content).length;
+
+          if (keysInEntryCount > 0) {
+            progressPerItemPerEntry = progressPerEntryPerSection / keysInEntryCount;
+          } else {
+            progressPerItemPerEntry = progressPerEntryPerSection;
+          }
+
+          for (key in entry.content) {
+            if (entry.content.hasOwnProperty(key)) {
+              if (entry.content[key] && entry.content[key] !== '') {
+                progress = progress + progressPerItemPerEntry;
+              }
+            }
+          }
+        }
+      }
+
+      vm.progress = Math.round(progress);
+    };
+
+    // Configure and open modal dialog for preview and download
+    vm.openModal = function (size) {
+      var modalInstance = $uibModal.open({
+        animation: vm.modalAnimationsEnabled,
+        templateUrl: 'modules/cvs/client/views/preview-cv.client.view.html',
+        controller: 'PreviewCVCtrl',
+        controllerAs: 'pcvCtrl',
+        size: size,
+        resolve: {
+          cv: vm.cv
+        }
+      });
+    };
+
+    vm.toggleModalAnimation = function () {
+      vm.modalAnimationsEnabled = !vm.modalAnimationsEnabled;
+    };
+
+    // Remove existing CV
+    vm.remove = function() {
+      if ($window.confirm('Are you sure you want to delete?')) {
+        vm.cv.$remove($state.go('cvs.list'));
+      }
+    };
+
+    // Save Article
+    vm.save = function() {
+
+      // TODO: move create/update logic to service
+      if (vm.cv._id) {
+        vm.cv.$update(successCallback, errorCallback);
+      } else {
+        vm.cv.$save(successCallback, errorCallback);
+      }
+
+      function successCallback(res) {
+        $window.alert('Your CV was saved successfully!');
+      }
+
+      function errorCallback(res) {
+        $window.alert('A server error is occurred. Please try again later.');
+      }
+    };
+  }
+}());

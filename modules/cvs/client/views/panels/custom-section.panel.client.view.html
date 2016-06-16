@@ -1,13 +1,13 @@
-<section>
+<section ng-controller="CustomSectionCtrl as csCtrl" ng-init="csCtrl.init(vm.cv, vm.active)">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">Custom section</h4>
     </div>
     <div class = "panel-body">
-      <form ng-submit="vm.addSection()">
+      <form ng-submit="csCtrl.addSection()">
         <div class="input-group">
           <span class="input-group-addon">Section name</span>
-          <input type="text" class="form-control" placeholder="Section name" ng-model="vm.newSectionName">
+          <input type="text" class="form-control" placeholder="Section name" ng-model="csCtrl.newSectionName">
         </div>
         <div>
           <h5><span class="label label-default">e.g. Hobbies & Interests, References</span></h5>

@@ -1,23 +1,23 @@
-<section>
+<section ng-controller="SectionManagementCtrl as smCtrl" ng-init="smCtrl.init(vm.cv, vm.active)">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">Section management</h4>
     </div>
     <div class = "panel-body">
     	<ul class="nav nav-pills nav-stacked">
-        <li ng-repeat="section in vm.cv.content.sections" ng-class="vm.isSectionActive(section)">
-          <a href="" ng-click="vm.setCurrentSection(section)">{{section.name}}</a>
+        <li ng-repeat="section in smCtrl.cv.content.sections" ng-class="smCtrl.isSectionActive(section)">
+          <a href="" ng-click="smCtrl.setActiveSection(section)">{{section.name}}</a>
         </li>
     	</ul>
     	<br>
       <div class="btn-group">
-        <button type="button" class="btn btn-default" aria-label="Move down" ng-click="vm.moveSectionDown(vm.currentSection)" ng-disabled="vm.currentSection.isLast">
+        <button type="button" class="btn btn-default" aria-label="Move down" ng-click="smCtrl.moveActiveSectionDown()" ng-disabled="smCtrl.active.isLast">
           <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-default" aria-label="Move up" ng-click="vm.moveSectionUp(vm.currentSection)" ng-disabled="vm.currentSection.isFirst">
+        <button type="button" class="btn btn-default" aria-label="Move up" ng-click="smCtrl.moveActiveSectionUp()" ng-disabled="smCtrl.active.isFirst">
           <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-default" aria-label="Remove" ng-click="vm.removeSection(vm.currentSection)" ng-disabled="!vm.currentSection.optional">
+        <button type="button" class="btn btn-default" aria-label="Remove" ng-click="smCtrl.removeActiveSection()" ng-disabled="!smCtrl.active.section.optional">
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
         </button>
       </div>

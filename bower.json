@@ -17,7 +17,8 @@
     "tinymce": "tinymce-dist#^4.3.12",
     "angular-ui-tinymce": "^0.0.16",
     "angular-file-saver": "^1.1.1",
-    "jspdf": "^1.2.61"
+    "jspdf": "^1.2.61",
+    "html2canvas": "^0.4.1"
   },
   "overrides": {
     "bootstrap": {

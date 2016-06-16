@@ -4,56 +4,46 @@
       <div class="col-md-6">
         <div class="input-group">
           <span class="input-group-addon">Course title</span>
-          <input type="text" class="form-control" placeholder="Master of Science" ng-model="entry.content.courseTitle">
+          <input type="text" class="form-control" placeholder="Master of Science" ng-model="mEntry.entry.content.courseTitle">
         </div>
       </div>
       <div class="col-md-6">
         <div class="input-group">
           <span class="input-group-addon">Institution name</span>
-          <input type="text" class="form-control" placeholder="Oxford University" ng-model="entry.content.institutionName">
+          <input type="text" class="form-control" placeholder="Oxford University" ng-model="mEntry.entry.content.institutionName">
         </div>
       </div>
     </div>
     </p>
-    <div ng-controller="DatepickerPopupCtrl as dpCtrl">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="input-group">
-            <span class="input-group-addon">Start date</span>
-            <input type="text" placeholder="01-April-2015" class="form-control" uib-datepicker-popup="{{dpCtrl.format}}" ng-model="entry.content.startDate" is-open="dpCtrl.popup1.opened" datepicker-options="dpCtrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="dpCtrl.altInputFormats"/>
-            <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="dpCtrl.open1()">
-            <i class="glyphicon glyphicon-calendar"></i>
-            </button>
-            </span>
-          </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group" name="startdate-input-group">
+          <span class="input-group-addon">Start date</span>
+          <input type="text" class="form-control" placeholder="01-April-2015" ng-model="mEntry.entry.content.startDate">
         </div>
-        <div class="col-md-6">
-          <div class="input-group" name="enddate-input-group">
-            <span class="input-group-addon">End date</span>
-            <input type="text" placeholder="01-April-2016" class="form-control" uib-datepicker-popup="{{dpCtrl.format}}" ng-model="entry.content.endDate" is-open="dpCtrl.popup2.opened" datepicker-options="dpCtrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="dpCtrl.altInputFormats"/>
-            <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="dpCtrl.open2()">
-            <i class="glyphicon glyphicon-calendar"></i>
-            </button>
-            </span>
-          </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group" name="enddate-input-group">
+          <span class="input-group-addon">End date</span>
+          <input type="text" class="form-control" placeholder="01-April-2016" ng-model="mEntry.entry.content.endDate">
         </div>
       </div>
     </div>
     <br>
     <div class="form-group">
-      <textarea id="tinymce" ui-tinymce="vm.tinymceOptions" name="otherinfo" ng-model="entry.content.otherInfo" class="form-control" cols="30" rows="12" placeholder="Other information"></textarea>
+      <div ng-controller="TinyMCECtrl as tmceCtrl">
+        <textarea id="tinymce" ui-tinymce="tmceCtrl.tinymceOptions" name="otherInfo" ng-model="mEntry.entry.content.otherInfo" class="form-control" cols="30" rows="12" placeholder="Other information"></textarea>
+      </div>
     </div>
   <p align="left">
   <div class="btn-group">
-    <button type="button" class="btn btn-default" aria-label="Move down" ng-click="esCtrl.moveEntryDown(entry)" ng-disabled="entry.isLast">
+    <button type="button" class="btn btn-default" aria-label="Move down" ng-click="esCtrl.moveMEntryDown(mEntry)" ng-disabled="mEntry.isLast">
       <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
     </button>
-    <button type="button" class="btn btn-default" aria-label="Move up" ng-click="esCtrl.moveEntryUp(entry)" ng-disabled="entry.isFirst">
+    <button type="button" class="btn btn-default" aria-label="Move up" ng-click="esCtrl.moveMEntryUp(mEntry)" ng-disabled="mEntry.isFirst">
       <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
     </button>
-    <button type="button" class="btn btn-default" aria-label="Remove" ng-click="esCtrl.removeEntry(entry)">
+    <button type="button" class="btn btn-default" aria-label="Remove" ng-click="esCtrl.removeMEntry(mEntry)">
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
     </button>
   </div>

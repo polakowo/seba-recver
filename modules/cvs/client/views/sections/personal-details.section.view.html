@@ -1,7 +1,7 @@
-<section ng-controller="PersonalDetailsSectionCtrl as pdsCtrl" ng-init="pdsCtrl.currentSection=vm.currentSection">
+<section ng-controller="PersonalDetailsSectionCtrl as pdsCtrl" ng-init="pdsCtrl.init(vm.active.section)">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="header-clickable panel-title">{{pdsCtrl.currentSection.name}}</h4>
+      <h4 class="header-clickable panel-title">{{pdsCtrl.section.name}}</h4>
     </div>
     <div class = "panel-body">
       <p>
@@ -9,13 +9,13 @@
         <div class="col-md-6">
           <div class="input-group">
             <span class="input-group-addon">Full name</span>
-            <input type="text" class="form-control" placeholder="Max Mustermann" ng-model="pdsCtrl.currentSection.content.fullName">
+            <input type="text" class="form-control" placeholder="Max Mustermann" ng-model="pdsCtrl.entryContent.fullName">
           </div>
         </div>
         <div class="col-md-6">
           <div class="input-group">
             <span class="input-group-addon">E-mail address</span>
-            <input type="text" class="form-control" placeholder="max-m@gmail.com" ng-model="pdsCtrl.currentSection.content.emailAddress">
+            <input type="text" class="form-control" placeholder="max-m@gmail.com" ng-model="pdsCtrl.entryContent.emailAddress">
           </div>
         </div>
       </div>
@@ -25,13 +25,13 @@
         <div class="col-md-6">
           <div class="input-group">
             <span class="input-group-addon">Phone number</span>
-            <input type="text" class="form-control" placeholder="(+49) 171 123 4567" ng-model="pdsCtrl.currentSection.content.phoneNumber">
+            <input type="text" class="form-control" placeholder="(+49) 171 123 4567" ng-model="pdsCtrl.entryContent.phoneNumber">
           </div>
         </div>
         <div class="col-md-6">
           <div class="input-group">
             <span class="input-group-addon">Website</span>
-            <input type="text" class="form-control" placeholder="www.max-m.de" ng-model="pdsCtrl.currentSection.content.website">
+            <input type="text" class="form-control" placeholder="www.max-m.de" ng-model="pdsCtrl.entryContent.website">
           </div>
         </div>
       </div>
@@ -44,13 +44,13 @@
               <div class="col-md-6">
                 <div class="input-group">
                   <span class="input-group-addon">Street address</span>
-                  <input type="text" class="form-control" placeholder="Arcisstraße 21" ng-model="pdsCtrl.currentSection.content.streetAddress">
+                  <input type="text" class="form-control" placeholder="Arcisstraße 21" ng-model="pdsCtrl.entryContent.streetAddress">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="input-group">
                   <span class="input-group-addon">Postal code</span>
-                  <input type="text" class="form-control" placeholder="80333" ng-model="pdsCtrl.currentSection.content.postalCode">
+                  <input type="text" class="form-control" placeholder="80333" ng-model="pdsCtrl.entryContent.postalCode">
                 </div>
               </div>
             </div>
@@ -60,13 +60,13 @@
               <div class="col-md-6">
                 <div class="input-group">
                   <span class="input-group-addon">City</span>
-                  <input type="text" class="form-control" placeholder="Munich" ng-model="pdsCtrl.currentSection.content.city">
+                  <input type="text" class="form-control" placeholder="Munich" ng-model="pdsCtrl.entryContent.city">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="input-group">
                   <span class="input-group-addon">Country</span>
-                  <input type="text" class="form-control" placeholder="Germany" ng-model="pdsCtrl.currentSection.content.country">
+                  <input type="text" class="form-control" placeholder="Germany" ng-model="pdsCtrl.entryContent.country">
                 </div>
               </div>
             </div>

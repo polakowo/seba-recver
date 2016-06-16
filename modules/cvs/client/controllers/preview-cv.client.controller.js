@@ -24,12 +24,12 @@
       'path': '/modules/cvs/client/views/cv-templates/basic3.template.view.html'
     }];
 
-    vm.selected = {
+    vm.active = {
       template: vm.templates[0]
     };
 
     vm.download = function () {
-      $uibModalInstance.close(vm.selected.template);
+      $uibModalInstance.close(vm.active.template);
     };
 
     vm.close = function () {
@@ -37,7 +37,7 @@
     };
 
     vm.composePDF = function(preview) {
-      $templateRequest(vm.selected.template.path).then(function(template) {
+      $templateRequest(vm.active.template.path).then(function(template) {
         var scope = $rootScope.$new();
         scope.cv = vm.cv;
         var compiled = $compile(template)(scope);

@@ -5,13 +5,13 @@
   <div class="modal-body">
     <ul>
         <li ng-repeat="template in pcvCtrl.templates">
-            <a href="#" ng-click="$event.preventDefault(); pcvCtrl.selected.template = template;">{{ template.name }}</a>
+            <a href="#" ng-click="$event.preventDefault(); pcvCtrl.active.template = template;">{{ template.name }}</a>
         </li>
     </ul>
     <hr>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="header-clickable panel-title">Preview - {{ pcvCtrl.selected.template.name }}</h4>
+        <h4 class="header-clickable panel-title">Preview - {{ pcvCtrl.active.template.name }}</h4>
       </div>
       <div class="panel-body">
         <div class="embed-responsive embed-responsive-16by9">
