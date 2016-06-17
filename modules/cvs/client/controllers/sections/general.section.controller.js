@@ -11,10 +11,10 @@
 
     var vm = this;
 
-    vm.entryContent = {};
-
     vm.init = function(section) {
       vm.section = section;
+      vm.entryContent = {};
+
       if (section.content.entries.length === 0) {
         section.content.entries.push({
           content: {

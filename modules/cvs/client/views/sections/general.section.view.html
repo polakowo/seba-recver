@@ -1,14 +1,17 @@
 <section ng-controller="GeneralSectionCtrl as gsCtrl"  ng-init="gsCtrl.init(vm.active.section)">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="header-clickable panel-title">{{gsCtrl.section.name}}</h4>
+      <h4 class="panel-title">{{gsCtrl.section.name}}</h4>
     </div>
     <div class = "panel-body">
+      <h5><span class="label label-info">Custom information</span></h5>
+      <div class="well">
       <div class="form-group">
         <div ng-controller="TinyMCECtrl as tmceCtrl">
           <textarea id="tinymce" ui-tinymce="tmceCtrl.tinymceOptions" name="content" ng-model="gsCtrl.entryContent.content" class="form-control" cols="30" rows="12" placeholder="Content"></textarea>
         </div>
       </div>
+    </div>
     </div>
 	</div>
 </section>

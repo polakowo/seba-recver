@@ -16,11 +16,23 @@
 
       vm.progress = 0;
 
+      vm.progressTypes = ['danger', 'warning', 'success'];
+
       $scope.$watch('vm.cv', function(newValue, oldValue) {
         vm.updateProgress();
       }, true);
 
       vm.modalAnimationsEnabled = false;
+    };
+
+    vm.updateProgressType = function() {
+      if (vm.progress < 34) {
+        vm.progressType = vm.progressTypes[0];
+      } else if (vm.progress < 100) {
+        vm.progressType = vm.progressTypes[1];
+      } else {
+        vm.progressType = vm.progressTypes[2];
+      }
     };
 
     // Configure and update progress bar
@@ -67,8 +79,8 @@
           }
         }
       }
-
       vm.progress = Math.round(progress);
+      vm.updateProgressType();
     };
 
     // Configure and open modal dialog for preview and download

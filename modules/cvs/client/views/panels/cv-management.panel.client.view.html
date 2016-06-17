@@ -5,7 +5,7 @@
     </div>
     <div class = "panel-body">
       <small><em>Progress of your CV</em></small>
-      <uib-progressbar animate="true" value="cvmCtrl.progress" type="default"><b>{{cvmCtrl.progress}}%</b></uib-progressbar>
+      <uib-progressbar animate="true" value="cvmCtrl.progress" type="{{cvmCtrl.progressType}}"><b>{{cvmCtrl.progress}}%</b></uib-progressbar>
       <div class="input-group">
         <span class="input-group-addon">CV title</span>
         <input type="text" class="form-control" placeholder="CV title" ng-model="cvmCtrl.cv.title">

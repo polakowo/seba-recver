@@ -1,7 +1,7 @@
 <section ng-controller="WorkExperienceSectionCtrl as weCtrl" ng-init="weCtrl.init(vm.active.section)">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="header-clickable panel-title">{{weCtrl.section.name}}</h4>
+      <h4 class="panel-title">{{weCtrl.section.name}}</h4>
     </div>
     <div class="panel-body">
       <div ng-repeat="mEntry in weCtrl.mEntries">
@@ -10,7 +10,7 @@
       	</div>
       </div>
       <p align="left">
-        <button type="submit" class="btn btn-success" aria-label="Create new entry" ng-click="weCtrl.addMEntry()">
+        <button type="submit" class="btn btn-info" aria-label="Create new entry" ng-click="weCtrl.addMEntry()">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New entry
         </button>
       </p>

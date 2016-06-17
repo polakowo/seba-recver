@@ -36,23 +36,27 @@
 
     vm.addSection = function() {
       if (vm.newSectionName && vm.newSectionName !== '') {
-        var sectionsWithTheSameName = vm.cv.content.sections.filter(function(section) { return section.name === vm.newSectionName; });
+        var sectionsWithTheSameName = vm.cv.content.sections.filter(function(section) {
+          return section.name === vm.newSectionName;
+        });
         if (sectionsWithTheSameName.length > 0) {
           $window.alert('A section with the same name already exists. Please choose another name.');
         } else {
           vm.newSectionName = vm.newSectionName.charAt(0).toUpperCase() + vm.newSectionName.slice(1);
           var newSection = {
-            'name': vm.newSectionName,
-            'path': '/modules/cvs/client/views/sections/general.section.view.html',
-            'content': {
-              content: ''
+            name: vm.newSectionName,
+            path: '/modules/cvs/client/views/sections/general.section.view.html',
+            content: {
+              entries: []
             },
-            'optional': true
+            optional: true
           };
           vm.cv.content.sections.push(newSection);
           vm.setActiveSection(newSection);
           vm.newSectionName = '';
         }
+      } else {
+        $window.alert('Empty name is not allowed.');
       }
     };
 

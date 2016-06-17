@@ -5,9 +5,9 @@
     .module('cvs')
     .controller('FormCVCtrl', FormCVCtrl);
 
-  FormCVCtrl.$inject = ['$state', 'cvResolve', '$window'];
+  FormCVCtrl.$inject = ['$state', 'cvResolve', '$window', '$filter'];
 
-  function FormCVCtrl($state, cv, $window) {
+  function FormCVCtrl($state, cv, $window, $filter) {
 
     var vm = this;
 
@@ -15,7 +15,7 @@
       vm.cv = cv;
 
       if (!vm.cv.hasOwnProperty('content')) {
-        vm.cv.title = 'My new CV!';
+        vm.cv.title = 'My CV ' + $filter('date')(new Date(), 'M/d/yy h:mm a');
         vm.cv.content = {
           sections: [
             {
@@ -39,6 +39,13 @@
                 entries: []
               },
               optional: false
+            }, {
+              name: 'Skills',
+              path: '/modules/cvs/client/views/sections/general.section.view.html',
+              content: {
+                entries: []
+              },
+              optional: true
             }
           ]
         };

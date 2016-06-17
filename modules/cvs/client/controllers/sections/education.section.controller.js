@@ -19,7 +19,8 @@
         vm.mEntries.push({
           entry: vm.section.content.entries[i],
           isFirst: vm.isEntryFirst(i),
-          isLast: vm.isEntryLast(i)
+          isLast: vm.isEntryLast(i),
+          i: i
         });
       }
     };
@@ -28,6 +29,7 @@
       for (var i = 0; i < vm.mEntries.length; i++) {
         vm.mEntries[i].isFirst = vm.isMEntryFirst(i);
         vm.mEntries[i].isLast = vm.isMEntryLast(i);
+        vm.mEntries[i].i = i;
       }
     };
 
@@ -42,10 +44,12 @@
         }
       };
       vm.section.content.entries.push(newEntry);
+      var i = vm.section.content.entries.length - 1;
       vm.mEntries.push({
         entry: newEntry,
-        isFirst: vm.isEntryFirst(vm.section.content.entries.length - 1),
-        isLast: vm.isEntryLast(vm.section.content.entries.length - 1)
+        isFirst: vm.isEntryFirst(i),
+        isLast: vm.isEntryLast(i),
+        i: i
       });
       vm.updateMEntries();
     };
