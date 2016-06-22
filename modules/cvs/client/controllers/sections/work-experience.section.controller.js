@@ -40,7 +40,7 @@
           companyName: '',
           startDate: '',
           endDate: '',
-          otherInfo: ''
+          customInfo: ''
         }
       };
       vm.section.content.entries.push(newEntry);

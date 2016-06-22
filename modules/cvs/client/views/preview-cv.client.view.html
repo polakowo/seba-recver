@@ -3,9 +3,9 @@
     <h3 class="modal-title">Choose a template for preview</h3>
   </div>
   <div class="modal-body">
-    <ul>
-        <li ng-repeat="template in pcvCtrl.templates">
-            <a href="#" ng-click="$event.preventDefault(); pcvCtrl.active.template = template;">{{ template.name }}</a>
+    <ul class="nav nav-pills">
+        <li ng-repeat="template in pcvCtrl.templates" ng-class="pcvCtrl.isTemplateActive(template)">
+            <a href="#" ng-click="$event.preventDefault(); pcvCtrl.setActiveTemplate(template)">{{ template.name }}</a>
         </li>
     </ul>
     <hr>
@@ -14,19 +14,19 @@
         <h4 class="header-clickable panel-title">Preview - {{ pcvCtrl.active.template.name }}</h4>
       </div>
       <div class="panel-body">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" id="pdfPreview_pdf" type="application/pdf" src=""></iframe>
+        <div style="overflow:scroll" class="embed-responsive embed-responsive-16by9">
+          <div id="preview"></div>
         </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
     <div class="btn-group">
-      <button class="btn btn-default" type="button" ng-click="pcvCtrl.composePDF(true)">
+      <button class="btn btn-default" type="button" ng-click="pcvCtrl.previewHTML()">
         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Preview
       </button>
-      <button class="btn btn-default" type="button" ng-click="pcvCtrl.composePDF(false)">
-        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
+      <button class="btn btn-default" type="button" ng-click="pcvCtrl.printHTML()">
+        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
       </button>
     </div>
     <div class="btn-group">

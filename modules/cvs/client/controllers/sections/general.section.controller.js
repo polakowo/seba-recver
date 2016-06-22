@@ -18,7 +18,7 @@
       if (section.content.entries.length === 0) {
         section.content.entries.push({
           content: {
-            content: ''
+            customInfo: ''
           }
         });
       }

@@ -15,9 +15,11 @@
           {% block content %}{% endblock %}
         </div>
 			</div>
-			<div class="col-md-8" ng-model="vm.active.section" ng-include="vm.active.section.path">
-        {% block content %}{% endblock %}
-			</div>
+      <div class="col-lg-8">
+  			<div ng-model="vm.active.section" ng-include="vm.active.section.path">
+          {% block content %}{% endblock %}
+  			</div>
+      </div>
 		</div>
 	</div>
 </section>
