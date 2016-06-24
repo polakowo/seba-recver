@@ -5,17 +5,16 @@
     .module('cvs')
     .controller('PreviewCVCtrl', PreviewCVCtrl);
 
-  PreviewCVCtrl.$inject = ['$rootScope', '$uibModalInstance', 'cv', '$window', 'FileSaver', 'Blob', '$templateRequest', '$compile', '$timeout'];
+  PreviewCVCtrl.$inject = ['$rootScope', '$uibModalInstance', 'cv', '$window', '$filter'];
 
-  function PreviewCVCtrl($rootScope, $uibModalInstance, cv, $window, FileSaver, Blob, $templateRequest, $compile, $timeout) {
+  function PreviewCVCtrl($rootScope, $uibModalInstance, cv, $window, $filter) {
 
     var vm = this;
 
     vm.cv = cv;
 
     vm.templates = [{
-      'name': 'Basic template 1',
-      'path': '/modules/cvs/client/views/cv-templates/basic1.template.view.html'
+      'name': 'Basic template 1'
     }];
 
     vm.active = {
@@ -30,363 +29,236 @@
       vm.active.template = template;
     };
 
-    vm.isCVEmpty = function() {
-      var i;
-
-      for (i = 0; i < vm.cv.content.sections.length; i++) {
-        if (!vm.isSectionEmpty(vm.cv.content.sections[i])) {
-          return false;
-        }
-      }
-      return true;
-    };
-
-    vm.isSectionEmpty = function(section) {
-      var i;
-
-      for (i = 0; i < section.content.entries.length; i++) {
-        if (!vm.isEntryEmpty(section.content.entries[i])) {
-          return false;
-        }
-      }
-      return true;
-    };
-
-    vm.isEntryEmpty = function(entry) {
-      var key;
-
-      for (key in entry.content) {
-        if (entry.content.hasOwnProperty(key)) {
-          if (typeof entry.content[key] != 'undefined' && entry.content[key] !== '') {
-            return false;
-          }
-        }
-      }
-      return true;
-    };
-
-    vm.isPropertyEmpty = function(property) {
-      if (typeof property != 'undefined' && property !== '') {
-        return false;
-      }
-      return true;
-    };
-
     vm.composeTemplate = function() {
       var section,
         entry,
         key,
         j,
-        i;
+        i,
+        startDate,
+        endDate;
       var template = '';
 
-      if (!vm.isCVEmpty()) {
-        template += '<div class="container">';
+      section = vm.cv.content.sections[0];
+      entry = section.content.entries[0];
 
-        // Show full name at first
-        for (i = 0; i < vm.cv.content.sections.length; i++) {
-          section = vm.cv.content.sections[i];
+      // HTML, HEAD & BODY
+      template = template
+      + '<!DOCTYPE html>'
+      + '<html>'
+      + '<head>'
+      + '<title>' + vm.cv.title + '</title>'
+      + '<meta charset="UTF-8">'
+      + '<link type="text/css" rel="stylesheet" href="/modules/cvs/client/templates/basic-1/basic-1.template.css">'
+      + '<link href="http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300" rel="stylesheet" type="text/css">'
+      + '<!--[if lt IE 9]>'
+      + '<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>'
+      + '<![endif]-->'
+      + '</head>'
+      + '<body id="top">';
 
-          if (section.name === 'Personal details') {
+      // CV
+      template = template
+      + '<div id="cv">';
+
+      // MAIN DETAILS
+      template = template
+      + '<div class="mainDetails">';
+
+      // NAME
+      template = template
+      + '<div id="name">'
+      + '<h1>' + entry.content.fullName + '</h1>';
+
+      if (vm.cv.content.sections[1].name === 'Personal profile') {
+        section = vm.cv.content.sections[1];
+        entry = section.content.entries[0];
+
+        template = template
+        + '<h2>' + entry.content.jobTitle + '</h2>';
+
+        section = vm.cv.content.sections[0];
+        entry = section.content.entries[0];
+      }
+
+      // CLOSE NAME
+      template = template
+      + '</div>';
+
+      // CONTACT DETAILS
+      template = template
+      + '<div id="contactDetails">'
+      + '<ul>';
+
+      // Address information
+      template = template
+      + '<li>Residence:</li>'
+      + '<li>' + entry.content.addressLine1 + '</li>'
+      + '<li>' + entry.content.addressLine2 + '</li>'
+      + '<li>' + entry.content.addressLine3 + '</li>';
+
+      // Phone number
+      template = template
+      + '<li>Phone number: ' + entry.content.phoneNumber + '</li>';
+
+      // Email
+      template = template
+      + '<li>Email address: <a href="' + entry.content.emailAddress + '" target="_blank">' + entry.content.emailAddress + '</a></li>';
+
+      // Website
+      template = template
+      + '<li>Website: <a href="' + entry.content.website + '">' + entry.content.website + '</a></li>';
+
+      // CLOSE CONTACT DETAILS & MAIN DETAILS
+      template = template
+      + '</ul>'
+      + '</div>'
+      + '<div class="clear">'
+      + '</div>'
+      + '</div>';
+
+      // OPEN MAIN AREA
+      template = template
+      + '<div id="mainArea">';
+
+      // Show rest information as usual
+      for (i = 1; i < vm.cv.content.sections.length; i++) {
+        section = vm.cv.content.sections[i];
+
+        switch (section.name) {
+          case 'Personal profile':
             entry = section.content.entries[0];
 
-            if (!vm.isPropertyEmpty(entry.content.fullName)) {
+            template = template
+            + '<section>'
+            + '<article>'
+            + '<div class="sectionTitle">'
+            + '<h2>' + section.name + '</h2>'
+            + '</div>'
+            + '<div class="sectionContent">'
+            + '<p>' + entry.content.customInfo + '</p>'
+            + '</div>'
+            + '</article>'
+            + '<div class="clear">'
+            + '</div>'
+            + '</section>';
+            break;
+          case 'Work experience':
+            template = template
+            + '<section>'
+            + '<div class="sectionTitle">'
+            + '<h2>' + section.name + '</h2>'
+            + '</div>'
+            + '<div class="sectionContent">';
+
+            for (j = 0; j < section.content.entries.length; j++) {
+              entry = section.content.entries[j];
+
+              startDate = $filter('date')(new Date(entry.content.startDate), 'MMM yyyy');
+              endDate = $filter('date')(new Date(entry.content.endDate), 'MMM yyyy');
+
               template = template
-                + '<div class="row">'
-                + '<div class="col-md-5 col-md-offset-1">'
-                + '<h2>' + entry.content.fullName + '</h2>'
-                + '</div>'
-                + '<div class="col-md-5 col-md-offset-1">'
-                + '</div>'
-                + '</div>';
+              + '<article>'
+              + '<h3>' + entry.content.jobTitle + ' at ' + entry.content.companyName + '</h3>'
+              + '<p class="subDetails">' + startDate.toString() + ' - ' + endDate.toString() + '</p>'
+              + '<p>' + entry.content.customInfo + '</p>'
+              + '</article>';
             }
-          }
-        }
-        // Show rest information as usual
-        for (i = 0; i < vm.cv.content.sections.length; i++) {
-          section = vm.cv.content.sections[i];
 
-          if (!vm.isSectionEmpty(section)) {
-            switch (section.name) {
-              case 'Personal details':
-                template = template
-                  + '<br>'
-                  + '<div class="row">'
-                  + '<div class="col-md-5 col-md-offset-1">'
-                  + '<h3>' + section.name + '</h3>'
-                  + '</div>'
-                  + '<div class="col-md-5 col-md-offset-1">'
-                  + '</div>'
-                  + '</div>';
+            template = template
+            + '</div>'
+            + '<div class="clear">'
+            + '</div>'
+            + '</section>';
+            break;
+          case 'Education':
+            template = template
+            + '<section>'
+            + '<div class="sectionTitle">'
+            + '<h2>' + section.name + '</h2>'
+            + '</div>'
+            + '<div class="sectionContent">';
 
-                entry = section.content.entries[0];
+            for (j = 0; j < section.content.entries.length; j++) {
+              entry = section.content.entries[j];
 
-                template += '<hr>';
+              startDate = $filter('date')(new Date(entry.content.startDate), 'MMM yyyy');
+              endDate = $filter('date')(new Date(entry.content.endDate), 'MMM yyyy');
 
-                // Address information
-                if (!vm.isPropertyEmpty(entry.content.streetAddress)
-                  || !vm.isPropertyEmpty(entry.content.postalCode)
-                  || !vm.isPropertyEmpty(entry.content.city)
-                  || !vm.isPropertyEmpty(entry.content.country)) {
-                  var addressString = '';
-                  addressString += !vm.isPropertyEmpty(entry.content.streetAddress) ? entry.content.streetAddress + ' ' : '';
-                  addressString += !vm.isPropertyEmpty(entry.content.postalCode) ? entry.content.postalCode + ' ' : '';
-                  addressString += !vm.isPropertyEmpty(entry.content.city) ? entry.content.city + ' ' : '';
-                  addressString += !vm.isPropertyEmpty(entry.content.country) ? entry.content.country : '';
-
-                  template = template
-                    + '<div class="row">'
-                    + '<div class="col-md-3 col-md-offset-1">'
-                    + '<h4>Residence: </h4>'
-                    + '</div>'
-                    + '<div class="col-md-7 col-md-offset-1">'
-                    + '<h4>' + addressString + '</h4>'
-                    + '</div>'
-                    + '</div>';
-                }
-
-                // Phone number
-                if (!vm.isPropertyEmpty(entry.content.phoneNumber)) {
-                  template = template
-                    + '<div class="row">'
-                    + '<div class="col-md-3 col-md-offset-1">'
-                    + '<h4>Phone number: </h4>'
-                    + '</div>'
-                    + '<div class="col-md-7 col-md-offset-1">'
-                    + '<h4>' + entry.content.phoneNumber + '</h4>'
-                    + '</div>'
-                    + '</div>';
-                }
-
-                // Email address
-                if (!vm.isPropertyEmpty(entry.content.emailAddress)) {
-                  template = template
-                    + '<div class="row">'
-                    + '<div class="col-md-3 col-md-offset-1">'
-                    + '<h4>Email address: </h4>'
-                    + '</div>'
-                    + '<div class="col-md-7 col-md-offset-1">'
-                    + '<h4><a href="#">' + entry.content.emailAddress + '</a></h4>'
-                    + '</div>'
-                    + '</div>';
-                }
-
-                // Website
-                if (!vm.isPropertyEmpty(entry.content.website)) {
-                  template = template
-                    + '<div class="row">'
-                    + '<div class="col-md-3 col-md-offset-1">'
-                    + '<h4>Website: </h4>'
-                    + '</div>'
-                    + '<div class="col-md-7 col-md-offset-1">'
-                    + '<h4><a href="#">' + entry.content.website + '</a></h4>'
-                    + '</div>'
-                    + '</div>';
-                }
-                break;
-              case 'Work experience':
-                template = template
-                  + '<br>'
-                  + '<div class="row">'
-                  + '<div class="col-md-5 col-md-offset-1">'
-                  + '<h3>' + section.name + '</h3>'
-                  + '</div>'
-                  + '<div class="col-md-5 col-md-offset-1">'
-                  + '</div>'
-                  + '</div>';
-
-                template += '<hr>';
-
-                for (j = 0; j < section.content.entries.length; j++) {
-                  entry = section.content.entries[j];
-
-                  if (!vm.isPropertyEmpty(entry.content.startDate)
-                    && !vm.isPropertyEmpty(entry.content.endDate)
-                    && !vm.isPropertyEmpty(entry.content.jobTitle)) {
-                    template = template
-                      + '<div class="row">'
-                      + '<div class="col-md-3 col-md-offset-1">'
-                      + '<h4>' + entry.content.startDate + ' - ' + entry.content.endDate + '</h4>'
-                      + '</div>'
-                      + '<div class="col-md-7 col-md-offset-1">'
-                      + '<h4>' + entry.content.jobTitle;
-
-                    if (!vm.isPropertyEmpty(entry.content.companyName)) {
-                      template += ' <span>at ' + entry.content.companyName + '</span>';
-                    }
-
-                    template += '</h4>';
-
-                    if (!vm.isPropertyEmpty(entry.content.customInfo)) {
-                      template += '<h5>' + entry.content.customInfo + '</h5>';
-                    }
-
-                    template = template
-                      + '</div>'
-                      + '</div>';
-                  }
-                }
-                break;
-              case 'Education':
-                template = template
-                  + '<br>'
-                  + '<div class="row">'
-                  + '<div class="col-md-5 col-md-offset-1">'
-                  + '<h3>' + section.name + '</h3>'
-                  + '</div>'
-                  + '<div class="col-md-5 col-md-offset-1">'
-                  + '</div>'
-                  + '</div>';
-
-                template += '<hr>';
-
-                for (j = 0; j < section.content.entries.length; j++) {
-                  entry = section.content.entries[j];
-
-                  if (!vm.isPropertyEmpty(entry.content.startDate)
-                    && !vm.isPropertyEmpty(entry.content.endDate)
-                    && !vm.isPropertyEmpty(entry.content.courseTitle)) {
-                    template = template
-                      + '<div class="row">'
-                      + '<div class="col-md-3 col-md-offset-1">'
-                      + '<h4>' + entry.content.startDate + ' - ' + entry.content.endDate + '</h4>'
-                      + '</div>'
-                      + '<div class="col-md-7 col-md-offset-1">'
-                      + '<h4>' + entry.content.courseTitle;
-
-                    if (!vm.isPropertyEmpty(entry.content.institutionName)) {
-                      template += ' <span>at ' + entry.content.institutionName + '</span>';
-                    }
-
-                    template += '</h4>';
-
-                    if (!vm.isPropertyEmpty(entry.content.customInfo)) {
-                      template += '<h5>' + entry.content.customInfo + '</h5>';
-                    }
-
-                    template = template
-                      + '</div>'
-                      + '</div>';
-                  }
-                }
-                break;
-              default:
-                template = template
-                  + '<br>'
-                  + '<div class="row">'
-                  + '<div class="col-md-5 col-md-offset-1">'
-                  + '<h3>' + section.name + '</h3>'
-                  + '</div>'
-                  + '<div class="col-md-5 col-md-offset-1">'
-                  + '</div>'
-                  + '</div>';
-
-                entry = section.content.entries[0];
-
-                template += '<hr>';
-
-                if (!vm.isPropertyEmpty(entry.content.customInfo)) {
-                  template = template
-                    + '<br>'
-                    + '<div class="row">'
-                    + '<div class="col-md-11 col-md-offset-1">'
-                    + '<h5>' + entry.content.customInfo + '</h5>'
-                    + '</div>'
-                    + '</div>';
-                }
-                break;
+              template = template
+              + '<article>'
+              + '<h3>' + entry.content.courseTitle + ' at ' + entry.content.institutionName + '</h3>'
+              + '<p class="subDetails">' + startDate.toString() + ' - ' + endDate.toString() + '</p>'
+              + '<p>' + entry.content.customInfo + '</p>'
+              + '</article>';
             }
-          }
-        }
 
-        template += '</div>';
-      } else {
-        template += '<h3>Your CV is empty. Please add some information about you.</h3>';
+            template = template
+            + '</div>'
+            + '<div class="clear">'
+            + '</div>'
+            + '</section>';
+            break;
+          default:
+            entry = section.content.entries[0];
+
+            template = template
+            + '<section>'
+            + '<div class="sectionTitle">'
+            + '<h2>' + section.name + '</h2>'
+            + '</div>'
+            + '<div class="sectionContent">';
+
+            template = template
+            + '<article>'
+            + '<p>' + entry.content.customInfo + '</p>'
+            + '</article>';
+
+            template = template
+            + '</div>'
+            + '<div class="clear">'
+            + '</div>'
+            + '</section>';
+            break;
+        }
       }
+
+      // CLOSE MAIN AREA
+      template = template
+      + '</div>';
+
+      // CLOSE CV
+      template = template
+      + '</div>';
+
+      // CLOSE BODY + HTML
+      template = template
+      + '</body>';
+      + '</html>';
 
       return template;
     };
 
-    vm.templateToDOM = function(template) {
-      var section = document.createElement('section');
-      section.innerHTML = template;
-
-      return section;
-    };
-
     vm.previewHTML = function() {
-      var template = vm.composeTemplate();
-      var template_dom = vm.templateToDOM(template);
+      var iframe = document.getElementById('preview_iframe');
+      var html_template = vm.composeTemplate();
 
-      var template_frame = document.getElementById('preview');
+      var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-      if (template_frame.hasChildNodes()) {
-        template_frame.removeChild(template_frame.childNodes[0]);
-      }
-
-      template_frame.appendChild(template_dom);
+      iframeDoc.open();
+      iframeDoc.write(html_template);
+      iframeDoc.close();
     };
 
     vm.printHTML = function() {
-      var template_frame = document.getElementById('preview');
+      var iframe = document.getElementById('preview_iframe');
 
-      if (!template_frame.hasChildNodes()) {
-        vm.previewHTML();
-      }
+      vm.previewHTML();
 
-      var popupWin = window.open('', vm.cv.title, 'width=400,height=600');
-      popupWin.document.write('<html>');
-      popupWin.document.write('<head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></head>');
-      popupWin.document.write('<body>' + template_frame.innerHTML + '</body>');
-      popupWin.document.write('</html>');
-      popupWin.document.close(); // necessary for IE >= 10
-      popupWin.focus(); // necessary for IE >= 10
-      popupWin.print();
-      popupWin.close();
-    };
-
-    vm.composePDFFromFile = function(preview) {
-      var filePath = '';
-      $templateRequest(filePath).then(function(template) {
-        var scope = $rootScope.$new();
-        scope.cv = vm.cv;
-        var compiled = $compile(template)(scope);
-        $timeout(function() {
-          var final = compiled[0].innerHTML;
-          var pdf = new jsPDF('p', 'pt', 'a4');
-          var specialElementHandlers = {
-            '#bypassme': function(element, renderer) {
-              return true;
-            }
-          };
-          var margins = {
-            top: 80,
-            bottom: 60,
-            left: 40,
-            width: 522
-          };
-          pdf.fromHTML(
-            final,
-            margins.left,
-            margins.top,
-            {
-              'width': margins.width,
-              'elementHandlers': specialElementHandlers,
-              'pagesplit': true
-            },
-            function (dispose) {
-              if (preview) {
-                var uristring = pdf.output('datauristring');
-                angular.element(document.querySelector('#preview')).attr('src', uristring);
-              } else {
-                var blob = pdf.output('blob');
-                FileSaver.saveAs(blob, vm.cv.title.replace(/\s/g, '_'));
-              }
-            },
-            margins
-          );
-        });
-      });
+      iframe.contentWindow.onload = function() {
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+      };
     };
 
     vm.download = function () {

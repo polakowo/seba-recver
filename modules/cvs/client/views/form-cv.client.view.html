@@ -5,21 +5,61 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-4 sidenav">
-        <div ng-include="'/modules/cvs/client/views/panels/cv-management.panel.client.view.html'">
-          {% block content %}{% endblock %}
+        <div ng-controller="AccordionCtrl as aCtrl">
+          <uib-accordion>
+            <uib-accordion-group is-open="aCtrl.status.open">
+              <uib-accordion-heading>
+                CV management
+                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': aCtrl.status.open, 'glyphicon-chevron-right': !aCtrl.status.open}"></i>
+              </uib-accordion-heading>
+              <div ng-include="'/modules/cvs/client/views/panels/cv-management.panel.client.view.html'">
+                {% block content %}{% endblock %}
+              </div>
+            </uib-accordion-group>
+          </uib-accordion>
         </div>
-        <div ng-include="'/modules/cvs/client/views/panels/section-management.panel.client.view.html'"> 
-          {% block content %}{% endblock %}
+        <div ng-controller="AccordionCtrl as aCtrl">
+          <uib-accordion>
+            <uib-accordion-group is-open="aCtrl.status.open">
+              <uib-accordion-heading>
+                Section management
+                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': aCtrl.status.open, 'glyphicon-chevron-right': !aCtrl.status.open}"></i>
+              </uib-accordion-heading>
+              <div ng-include="'/modules/cvs/client/views/panels/section-management.panel.client.view.html'"> 
+                {% block content %}{% endblock %}
+              </div>
+            </uib-accordion-group>
+          </uib-accordion>
         </div>
-        <div ng-include="'/modules/cvs/client/views/panels/custom-section.panel.client.view.html'">
-          {% block content %}{% endblock %}
+        <div ng-controller="AccordionCtrl as aCtrl">
+          <uib-accordion>
+            <uib-accordion-group is-open="aCtrl.status.open">
+              <uib-accordion-heading>
+                Custom section
+                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': aCtrl.status.open, 'glyphicon-chevron-right': !aCtrl.status.open}"></i>
+              </uib-accordion-heading>
+              <div ng-include="'/modules/cvs/client/views/panels/custom-section.panel.client.view.html'">
+                {% block content %}{% endblock %}
+              </div>
+            </uib-accordion-group>
+          </uib-accordion>
         </div>
 			</div>
       <div class="col-lg-8">
-  			<div ng-model="vm.active.section" ng-include="vm.active.section.path">
-          {% block content %}{% endblock %}
-  			</div>
-      </div>
+        <div ng-controller="AccordionCtrl as aCtrl">
+          <uib-accordion>
+            <uib-accordion-group is-open="aCtrl.status.open">
+              <uib-accordion-heading>
+                {{vm.active.section.name}}
+                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': aCtrl.status.open, 'glyphicon-chevron-right': !aCtrl.status.open}"></i>
+              </uib-accordion-heading>
+              <div ng-model="vm.active.section" ng-include="vm.active.section.path">
+                {% block content %}{% endblock %}
+              </div>
+            </uib-accordion-group>
+          </uib-accordion>
+        </div>
+  		</div>
 		</div>
 	</div>
 </section>

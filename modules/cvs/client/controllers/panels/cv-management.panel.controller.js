@@ -3,11 +3,11 @@
 
   angular
     .module('cvs')
-    .controller('CVManagementCtrl', CVManagementCtrl);
+    .controller('CVManagementPanelCtrl', CVManagementPanelCtrl);
 
-  CVManagementCtrl.$inject = ['$scope', '$state', '$window', '$uibModal', 'Authentication'];
+  CVManagementPanelCtrl.$inject = ['$scope', '$state', '$window', '$uibModal', 'Authentication'];
 
-  function CVManagementCtrl($scope, $state, $window, $uibModal, Authentication) {
+  function CVManagementPanelCtrl($scope, $state, $window, $uibModal, Authentication) {
 
     var vm = this;
 
@@ -83,18 +83,27 @@
       vm.updateProgressType();
     };
 
+    vm.isCVComplete = function() {
+      return vm.progressType === vm.progressTypes[2];
+    };
+
     // Configure and open modal dialog for preview and download
     vm.openModal = function (size) {
-      var modalInstance = $uibModal.open({
-        animation: vm.modalAnimationsEnabled,
-        templateUrl: 'modules/cvs/client/views/preview-cv.client.view.html',
-        controller: 'PreviewCVCtrl',
-        controllerAs: 'pcvCtrl',
-        size: size,
-        resolve: {
-          cv: vm.cv
-        }
-      });
+
+      if (vm.isCVComplete()) {
+        var modalInstance = $uibModal.open({
+          animation: vm.modalAnimationsEnabled,
+          templateUrl: 'modules/cvs/client/views/preview-cv.client.view.html',
+          controller: 'PreviewCVCtrl',
+          controllerAs: 'pcvCtrl',
+          size: size,
+          resolve: {
+            cv: vm.cv
+          }
+        });
+      } else {
+        $window.alert('Please complete your CV.');
+      }
     };
 
     vm.toggleModalAnimation = function () {

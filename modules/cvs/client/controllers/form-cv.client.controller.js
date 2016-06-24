@@ -24,28 +24,40 @@
               content: {
                 entries: []
               },
-              optional: false
+              optional: false,
+              movable: false
+            }, {
+              name: 'Personal profile',
+              path: '/modules/cvs/client/views/sections/personal-profile.section.view.html',
+              content: {
+                entries: []
+              },
+              optional: true,
+              movable: false
             }, {
               name: 'Work experience',
               path: '/modules/cvs/client/views/sections/work-experience.section.view.html',
               content: {
                 entries: []
               },
-              optional: false
+              optional: false,
+              movable: true
             }, {
               name: 'Education',
               path: '/modules/cvs/client/views/sections/education.section.view.html',
               content: {
                 entries: []
               },
-              optional: false
+              optional: false,
+              movable: true
             }, {
               name: 'Skills',
               path: '/modules/cvs/client/views/sections/general.section.view.html',
               content: {
                 entries: []
               },
-              optional: true
+              optional: true,
+              movable: true
             }
           ]
         };

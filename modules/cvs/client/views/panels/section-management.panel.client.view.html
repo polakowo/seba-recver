@@ -1,26 +1,19 @@
-<section ng-controller="SectionManagementCtrl as smCtrl" ng-init="smCtrl.init(vm.cv, vm.active)">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">Section management</h4>
-    </div>
-    <div class = "panel-body">
-    	<ul class="nav nav-pills nav-stacked">
-        <li ng-repeat="section in smCtrl.cv.content.sections" ng-class="smCtrl.isSectionActive(section)">
-          <a href="" ng-click="smCtrl.setActiveSection(section)">{{section.name}}</a>
-        </li>
-    	</ul>
-    	<br>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default" aria-label="Move down" ng-click="smCtrl.moveActiveSectionDown()" ng-disabled="smCtrl.active.isLast">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default" aria-label="Move up" ng-click="smCtrl.moveActiveSectionUp()" ng-disabled="smCtrl.active.isFirst">
-          <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default" aria-label="Remove" ng-click="smCtrl.removeActiveSection()" ng-disabled="!smCtrl.active.section.optional">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
-        </button>
-      </div>
-    </div>
+<section ng-controller="SectionManagementPanelCtrl as smpCtrl" ng-init="smpCtrl.init(vm.cv, vm.active)">
+  <ul class="nav nav-pills nav-stacked">
+    <li ng-repeat="section in smpCtrl.cv.content.sections" ng-class="smpCtrl.isSectionActive(section)">
+      <a href="" ng-click="smpCtrl.setActiveSection(section)">{{section.name}}</a>
+    </li>
+  </ul>
+  <br>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default" aria-label="Move down" ng-click="smpCtrl.moveActiveSectionDown()" ng-disabled="!smpCtrl.active.isDownAllowed">
+    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="btn btn-default" aria-label="Move up" ng-click="smpCtrl.moveActiveSectionUp()" ng-disabled="!smpCtrl.active.isUpAllowed">
+    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="btn btn-default" aria-label="Remove" ng-click="smpCtrl.removeActiveSection()" ng-disabled="!smpCtrl.active.section.optional">
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
+    </button>
   </div>
 </section>

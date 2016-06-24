@@ -1,67 +1,69 @@
 <section>
-    <p>
-    <h5><span class="label label-info">Entry #{{mEntry.i+1}}</span></h5>
-    <div class="well">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">Course title</span>
-                <input type="text" class="form-control" placeholder="Master of Science" ng-model="mEntry.entry.content.courseTitle">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">Institution name</span>
-                <input type="text" class="form-control" placeholder="Oxford University" ng-model="mEntry.entry.content.institutionName">
-              </div>
-            </div>
+  <h5><span class="label label-info">Entry #{{mEntry.i+1}}</span></h5>
+  <div class="well">
+    <form name="esForm">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error': esForm.courseTitle.$invalid && esForm.courseTitle.$dirty }">
+            <label class="control-label">Course title</label>
+            <input type="text" class="form-control" name="courseTitle" ng-model="mEntry.entry.content.courseTitle" placeholder="Master of Science" required>
           </div>
-          </p>
-          <div class="row">
-            <div ng-controller="DatepickerPopupCtrl as dpCtrl" ng-init="dpCtrl.init(mEntry.entry)">
-              <div class="col-md-6">
-                <div class="input-group" name="startdate-input-group">
-                  <span class="input-group-addon">Start date</span>
-                  <input type="text" class="form-control" uib-datepicker-popup="{{dpCtrl.format}}" ng-model="dpCtrl.startDate" is-open="dpCtrl.popup1.opened" datepicker-options="dpCtrl.dateOptions" ng-required="true" close-text="Close" ng-change="dpCtrl.convertStartDateToString()" placeholder="2015-01-01"/>
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="dpCtrl.open1()">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                  </span>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-group" name="enddate-input-group">
-                  <span class="input-group-addon">End date</span>
-                  <input type="text" class="form-control" uib-datepicker-popup="{{dpCtrl.format}}" ng-model="dpCtrl.endDate" is-open="dpCtrl.popup2.opened" datepicker-options="dpCtrl.dateOptions" ng-required="true" close-text="Close" ng-change="dpCtrl.convertEndDateToString()" placeholder="2016-01-01"/>
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="dpCtrl.open2()">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error': esForm.institutionName.$invalid && esForm.institutionName.$dirty }">
+            <label class="control-label">Institution name</label>
+            <input type="text" class="form-control" name="institutionName" ng-model="mEntry.entry.content.institutionName" placeholder="Oxford University" required>
           </div>
-          <br>
-          <div class="form-group">
-            <div ng-controller="TinyMCECtrl as tmceCtrl">
-              <textarea id="tinymce" ui-tinymce="tmceCtrl.tinymceOptions" name="customInfo" ng-model="mEntry.entry.content.customInfo" class="form-control" cols="30" rows="12" placeholder="Custom information"></textarea>
-            </div>
-          </div>
-        <p align="left">
-        <div class="btn-group">
-          <button type="button" class="btn btn-default" aria-label="Move down" ng-click="esCtrl.moveMEntryDown(mEntry)" ng-disabled="mEntry.isLast">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-default" aria-label="Move up" ng-click="esCtrl.moveMEntryUp(mEntry)" ng-disabled="mEntry.isFirst">
-            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-default" aria-label="Remove" ng-click="esCtrl.removeMEntry(mEntry)">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
-          </button>
         </div>
       </div>
-    </p>
+      <div class="row">
+        <div ng-controller="DatepickerPopupCtrl as dpCtrl" ng-init="dpCtrl.init(mEntry.entry)">
+          <div class="col-md-6">
+            <div class="form-group" ng-class="{ 'has-error': esForm.startDate.$invalid && esForm.startDate.$dirty }">
+              <label class="control-label">Start date</label>
+              <div class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{dpCtrl.format}}" ng-model="dpCtrl.startDate" is-open="dpCtrl.popup1.opened" datepicker-options="dpCtrl.dateOptions" ng-required="true" close-text="Close" ng-change="dpCtrl.convertStartDateToString()" placeholder="2015-01-01" name="startDate" required/>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="dpCtrl.open1()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" ng-class="{ 'has-error': esForm.endDate.$invalid && esForm.endDate.$dirty }">
+              <label class="control-label">End date</label>
+              <div class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{dpCtrl.format}}" ng-model="dpCtrl.endDate" is-open="dpCtrl.popup2.opened" datepicker-options="dpCtrl.dateOptions" ng-required="true" close-text="Close" ng-change="dpCtrl.convertEndDateToString()" placeholder="2016-01-01" name="endDate" required/>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="dpCtrl.open2()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': esForm.customInfo.$invalid && esForm.customInfo.$dirty }">
+        <label class="control-label">Custom information</label>
+        <div ng-controller="TinyMCECtrl as tmceCtrl">
+          <textarea id="tinymce" ui-tinymce="tmceCtrl.tinymceOptions" name="customInfo" ng-model="mEntry.entry.content.customInfo" class="form-control" cols="30" rows="12" placeholder="Content"></textarea>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" aria-label="Move down" ng-click="weCtrl.moveMEntryDown(mEntry)" ng-disabled="mEntry.isLast">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Move up" ng-click="weCtrl.moveMEntryUp(mEntry)" ng-disabled="mEntry.isFirst">
+          <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Remove" ng-click="weCtrl.removeMEntry(mEntry)">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
+        </button>
+      </div>
+    </form>
+  </div>
   <hr>
 </section>

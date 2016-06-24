@@ -1,22 +1,11 @@
-<section ng-controller="CustomSectionCtrl as csCtrl" ng-init="csCtrl.init(vm.cv, vm.active)">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">Custom section</h4>
+<section ng-controller="CustomSectionPanelCtrl as cspCtrl" ng-init="cspCtrl.init(vm.cv, vm.active)">
+  <form name="cspForm" ng-submit="cspCtrl.addSection()">
+    <div class="form-group" ng-class="{ 'has-error': cspForm.newSectionName.$invalid && cspForm.newSectionName.$dirty }">
+      <label class="control-label">Section name</label>
+      <input type="text" class="form-control" name="newSectionName" ng-model="cspCtrl.newSectionName" placeholder="Hobbies & Interests" required>
     </div>
-    <div class = "panel-body">
-      <form ng-submit="csCtrl.addSection()">
-        <div class="input-group">
-          <span class="input-group-addon">Section name</span>
-          <input type="text" class="form-control" placeholder="Section name" ng-model="csCtrl.newSectionName">
-        </div>
-        <div>
-          <h5><span class="label label-default">e.g. Hobbies & Interests, References</span></h5>
-        </div>
-        <br>
-        <button type="submit" class="btn btn-primary" aria-label="Add section">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add section
-        </button>
-      </form>
-    </div>
-  </div>
+    <button type="submit" class="btn btn-primary" aria-label="Add section">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add section
+    </button>
+  </form>
 </section>

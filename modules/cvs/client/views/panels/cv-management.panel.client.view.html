@@ -1,32 +1,23 @@
-<section ng-controller="CVManagementCtrl as cvmCtrl" ng-init="cvmCtrl.init(vm.cv)">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">CV management</h4>
+<section ng-controller="CVManagementPanelCtrl as cvmpCtrl" ng-init="cvmpCtrl.init(vm.cv)">
+  <form name="cvmpForm" ng-submit="csCtrl.addSection()">
+    <label class="control-label">CV process</label>
+    <uib-progressbar animate="true" value="cvmpCtrl.progress" type="{{cvmpCtrl.progressType}}"><b>{{cvmpCtrl.progress}}%</b></uib-progressbar>
+    <div class="form-group" ng-class="{ 'has-error': cvmpForm.cvTitle.$invalid && cvmpForm.cvTitle.$dirty }">
+      <label class="control-label">CV title</label>
+      <input type="text" class="form-control" name="cvTitle" ng-model="cvmpCtrl.cv.title" placeholder="Application for CIO of Google" required>
     </div>
-    <div class = "panel-body">
-      <small><em>Progress of your CV</em></small>
-      <uib-progressbar animate="true" value="cvmCtrl.progress" type="{{cvmCtrl.progressType}}"><b>{{cvmCtrl.progress}}%</b></uib-progressbar>
-      <div class="input-group">
-        <span class="input-group-addon">CV title</span>
-        <input type="text" class="form-control" placeholder="CV title" ng-model="cvmCtrl.cv.title">
-      </div>
-      <div>
-        <h5><span class="label label-default">e.g. Application for CIO of Google</span></h5>
-      </div>
-      <br>
-    	<div class="btn-group">
-        <button type="button" class="btn btn-default" aria-label="Save" ng-click="cvmCtrl.save()">
-          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
-        </button>
-        <button type="button" class="btn btn-default" aria-label="Preview" ng-click="cvmCtrl.openModal('lg')">
-          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Preview
-        </button>
-      </div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default" aria-label="Delete" ng-click="cvmCtrl.remove()">
-          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
-        </button>
-    	</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default" aria-label="Save" ng-click="cvmpCtrl.save()">
+      <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+      </button>
+      <button type="button" class="btn btn-default" aria-label="Preview" ng-click="cvmpCtrl.openModal('lg')">
+      <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Preview
+      </button>
     </div>
-  </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default" aria-label="Delete" ng-click="cvmpCtrl.remove()">
+      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+      </button>
+    </div>
+  </form>
 </section>

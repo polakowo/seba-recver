@@ -1,80 +1,59 @@
 <section ng-controller="PersonalDetailsSectionCtrl as pdsCtrl" ng-init="pdsCtrl.init(vm.active.section)">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">{{pdsCtrl.section.name}}</h4>
-    </div>
-    <div class = "panel-body">
-      <p>
-        <h5><span class="label label-info">Basic information</span></h5>
-        <div class="well">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">Full name</span>
-                <input type="text" class="form-control" placeholder="Max Mustermann" ng-model="pdsCtrl.entryContent.fullName">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">E-mail address</span>
-                <input type="text" class="form-control" placeholder="max-m@gmail.com" ng-model="pdsCtrl.entryContent.emailAddress">
-              </div>
-            </div>
-          </div>
-          </p>
-          <p>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">Phone number</span>
-                <input type="text" class="form-control" placeholder="(+49) 171 123 4567" ng-model="pdsCtrl.entryContent.phoneNumber">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">Website</span>
-                <input type="text" class="form-control" placeholder="www.max-m.de" ng-model="pdsCtrl.entryContent.website">
-              </div>
-            </div>
+  <h5><span class="label label-info">Basic information</span></h5>
+  <div class="well">
+    <div class="row">
+      <form name="pds_basicForm">
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error': pds_basicForm.fullName.$invalid && pds_basicForm.fullName.$dirty }">
+            <label class="control-label">Full name</label>
+            <input type="text" class="form-control" name="fullName" ng-model="pdsCtrl.entryContent.fullName" placeholder="Max Mustermann" required>
           </div>
         </div>
-      </p>
-      <hr>
-      <p>
-        <h5><span class="label label-info">Address information</span></h5>
-        <div class="well">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">Street address</span>
-                <input type="text" class="form-control" placeholder="Arcisstraße 21" ng-model="pdsCtrl.entryContent.streetAddress">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">Postal code</span>
-                <input type="text" class="form-control" placeholder="80333" ng-model="pdsCtrl.entryContent.postalCode">
-              </div>
-            </div>
-          </div>
-          </p>
-          <p>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">City</span>
-                <input type="text" class="form-control" placeholder="Munich" ng-model="pdsCtrl.entryContent.city">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-addon">Country</span>
-                <input type="text" class="form-control" placeholder="Germany" ng-model="pdsCtrl.entryContent.country">
-              </div>
-            </div>
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error': pds_basicForm.emailAddress.$invalid && pds_basicForm.emailAddress.$dirty }">
+            <label class="control-label">Email address</label>
+            <input type="email" class="form-control" name="emailAddress" ng-model="pdsCtrl.entryContent.emailAddress" placeholder="max-m@gmail.com" required>
           </div>
         </div>
-      </p>
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error': pds_basicForm.phoneNumber.$invalid && pds_basicForm.phoneNumber.$dirty }">
+            <label class="control-label">Phone number</label>
+            <input type="text" class="form-control" name="phoneNumber" ng-model="pdsCtrl.entryContent.phoneNumber" placeholder="+12 (0) 345 678 90 12" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error': pds_basicForm.website.$invalid && pds_basicForm.website.$dirty }">
+            <label class="control-label">Website</label>
+            <input type="url" class="form-control" name="website" ng-model="pdsCtrl.entryContent.website" placeholder="http://www.max-m.de" required>
+          </div>
+        </div>
+      </form>
     </div>
-	</div>
+  </div>
+  <hr>
+  <h5><span class="label label-info">Address information</span></h5>
+  <div class="well">
+    <div class="row">
+      <form name="pds_addressForm">
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error': pds_addressForm.addressLine1.$invalid && pds_addressForm.addressLine1.$dirty }">
+            <label class="control-label">Address line 1</label>
+            <input type="text" class="form-control" name="addressLine1" ng-model="pdsCtrl.entryContent.addressLine1" placeholder="Arcisstraße 21" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error': pds_addressForm.addressLine2.$invalid && pds_addressForm.addressLine2.$dirty }">
+            <label class="control-label">Address line 2</label>
+            <input type="text" class="form-control" name="addressLine2" ng-model="pdsCtrl.entryContent.addressLine2" placeholder="80333 Munich" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error': pds_addressForm.addressLine3.$invalid && pds_addressForm.addressLine3.$dirty }">
+            <label class="control-label">Address line 3</label>
+            <input type="text" class="form-control" name="addressLine3" ng-model="pdsCtrl.entryContent.addressLine3" placeholder="Germany" required>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </section>

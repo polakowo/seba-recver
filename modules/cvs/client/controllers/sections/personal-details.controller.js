@@ -22,10 +22,9 @@
             emailAddress: '',
             phoneNumber: '',
             website: '',
-            streetAddress: '',
-            postalCode: '',
-            city: '',
-            country: ''
+            addressLine1: '',
+            addressLine2: '',
+            addressLine3: ''
           }
         });
       }

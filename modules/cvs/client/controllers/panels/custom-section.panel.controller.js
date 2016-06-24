@@ -3,11 +3,11 @@
 
   angular
     .module('cvs')
-    .controller('CustomSectionCtrl', CustomSectionCtrl);
+    .controller('CustomSectionPanelCtrl', CustomSectionPanelCtrl);
 
-  CustomSectionCtrl.$inject = ['$state', '$window'];
+  CustomSectionPanelCtrl.$inject = ['$state', '$window'];
 
-  function CustomSectionCtrl($state, $window) {
+  function CustomSectionPanelCtrl($state, $window) {
 
     var vm = this;
 

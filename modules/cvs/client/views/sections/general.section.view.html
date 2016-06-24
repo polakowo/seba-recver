@@ -1,17 +1,13 @@
 <section ng-controller="GeneralSectionCtrl as gsCtrl"  ng-init="gsCtrl.init(vm.active.section)">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">{{gsCtrl.section.name}}</h4>
-    </div>
-    <div class = "panel-body">
-      <h5><span class="label label-info">Custom information</span></h5>
-      <div class="well">
-      <div class="form-group">
+  <h5><span class="label label-info">Custom information</span></h5>
+  <div class="well">
+    <form name="gsForm">
+      <div class="form-group" ng-class="{ 'has-error': gsForm.customInfo.$invalid && gsForm.customInfo.$dirty }">
+        <label class="control-label">Custom information</label>
         <div ng-controller="TinyMCECtrl as tmceCtrl">
-          <textarea id="tinymce" ui-tinymce="tmceCtrl.tinymceOptions" name="customInfo" ng-model="gsCtrl.entryContent.customInfo" class="form-control" cols="30" rows="12" placeholder="Content"></textarea>
+          <textarea id="tinymce" ui-tinymce="tmceCtrl.tinymceOptions" name="customInfo" ng-model="gsCtrl.entryContent.customInfo" class="form-control" cols="30" rows="12" placeholder="Content" placeholder="Custom information"></textarea>
         </div>
       </div>
-    </div>
-    </div>
-	</div>
+    </form>
+  </div>
 </section>

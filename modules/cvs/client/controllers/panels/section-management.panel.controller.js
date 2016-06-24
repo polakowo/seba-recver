@@ -3,11 +3,11 @@
 
   angular
     .module('cvs')
-    .controller('SectionManagementCtrl', SectionManagementCtrl);
+    .controller('SectionManagementPanelCtrl', SectionManagementPanelCtrl);
 
-  SectionManagementCtrl.$inject = ['$state', '$window'];
+  SectionManagementPanelCtrl.$inject = ['$state', '$window'];
 
-  function SectionManagementCtrl($state, $window) {
+  function SectionManagementPanelCtrl($state, $window) {
 
     var vm = this;
 
@@ -24,26 +24,40 @@
     };
 
     // Select section
-    vm.isSectionFirst = function(i) {
-      return !(i > 0);
+    vm.isUpAllowed = function(i) {
+      if (vm.cv.content.sections[i].movable) {
+        if (i > 0) {
+          if (vm.cv.content.sections[i - 1].movable) {
+            return true;
+          }
+        }
+      }
+      return false;
     };
 
-    vm.isSectionLast = function(i) {
-      return !(i < vm.cv.content.sections.length - 1);
+    vm.isDownAllowed = function(i) {
+      if (vm.cv.content.sections[i].movable) {
+        if (i < vm.cv.content.sections.length - 1) {
+          if (vm.cv.content.sections[i + 1].movable) {
+            return true;
+          }
+        }
+      }
+      return false;
     };
 
     vm.setActiveSection = function(section) {
       var i = vm.cv.content.sections.indexOf(section);
       vm.active.section = section;
-      vm.active.isFirst = vm.isSectionFirst(i);
-      vm.active.isLast = vm.isSectionLast(i);
+      vm.active.isUpAllowed = vm.isUpAllowed(i);
+      vm.active.isDownAllowed = vm.isDownAllowed(i);
       vm.active.i = i;
     };
 
     // Update active section
     vm.updateActiveSection = function() {
-      vm.active.isFirst = vm.isSectionFirst(vm.active.i);
-      vm.active.isLast = vm.isSectionLast(vm.active.i);
+      vm.active.isUpAllowed = vm.isUpAllowed(vm.active.i);
+      vm.active.isDownAllowed = vm.isDownAllowed(vm.active.i);
     };
 
     // Remove active section
@@ -60,7 +74,7 @@
     // Move active section
     vm.moveActiveSectionUp = function() {
       var i = vm.active.i;
-      if (!vm.active.isFirst) {
+      if (vm.active.isUpAllowed) {
         vm.cv.content.sections.splice(i - 1, 0, vm.cv.content.sections.splice(i, 1)[0]);
         --vm.active.i;
       }
@@ -69,7 +83,7 @@
 
     vm.moveActiveSectionDown = function() {
       var i = vm.active.i;
-      if (!vm.active.isLast) {
+      if (vm.active.isDownAllowed) {
         vm.cv.content.sections.splice(i + 1, 0, vm.cv.content.sections.splice(i, 1)[0]);
         ++vm.active.i;
       }
