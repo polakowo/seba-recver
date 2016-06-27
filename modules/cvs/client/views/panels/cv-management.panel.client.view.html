@@ -1,6 +1,6 @@
 <section ng-controller="CVManagementPanelCtrl as cvmpCtrl" ng-init="cvmpCtrl.init(vm.cv)">
   <form name="cvmpForm" ng-submit="csCtrl.addSection()">
-    <label class="control-label">CV process</label>
+    <label class="control-label">CV progress</label>
     <uib-progressbar animate="true" value="cvmpCtrl.progress" type="{{cvmpCtrl.progressType}}"><b>{{cvmpCtrl.progress}}%</b></uib-progressbar>
     <div class="form-group" ng-class="{ 'has-error': cvmpForm.cvTitle.$invalid && cvmpForm.cvTitle.$dirty }">
       <label class="control-label">CV title</label>

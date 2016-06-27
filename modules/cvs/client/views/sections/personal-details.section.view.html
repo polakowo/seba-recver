@@ -1,4 +1,27 @@
 <section ng-controller="PersonalDetailsSectionCtrl as pdsCtrl" ng-init="pdsCtrl.init(vm.active.section)">
+  <h5><span class="label label-info">Profile picture</span></h5>
+  <div class="well">
+    <form name="pds_pictureForm">
+      <div class="row">
+        <div class="col-md-6">
+          <img id="img-thumbnail" class="img-thumbnail thumbnail" data-ng-src="{{pdsCtrl.entryContent.picture.data || pdsCtrl.imgNobodySrc}}" alt="Choose a picture"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="btn-group">
+            <label class="btn btn-default">
+              <input id="img-uploader" type="file" accept="image/*" aria-label="Choose a file" style="display: none;"/>
+              <span class="glyphicon glyphicon-camera" aria-hidden="true"></span> Browse
+            </label>
+            <button type="button" class="btn btn-default" aria-label="Remove" ng-click="pdsCtrl.removeImg()" ng-disabled="!pdsCtrl.imgLoaded">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
   <h5><span class="label label-info">Basic information</span></h5>
   <div class="well">
     <div class="row">

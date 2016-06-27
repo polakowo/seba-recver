@@ -50,24 +50,17 @@ p {
 }
 
 #headshot {
-	width: 12.5%;
 	float: left;
 	margin-right: 30px;
 }
 
 #headshot img {
-	width: 100%;
-	height: auto;
-	-webkit-border-radius: 50px;
-	border-radius: 50px;
+  max-height: 150px;
+  max-width: 150px;
 }
 
 #name {
 	float: left;
-}
-
-#contactDetails {
-	float: right;
 }
 
 #contactDetails ul {

@@ -16,7 +16,7 @@
 
       vm.progress = 0;
 
-      vm.progressTypes = ['danger', 'warning', 'success'];
+      vm.progressTypes = ['danger', 'warning', 'primary'];
 
       $scope.$watch('vm.cv', function(newValue, oldValue) {
         vm.updateProgress();
@@ -117,7 +117,7 @@
       }
     };
 
-    // Save Article
+    // Save CV
     vm.save = function() {
 
       // TODO: move create/update logic to service
@@ -132,7 +132,7 @@
       }
 
       function errorCallback(res) {
-        $window.alert('A server error is occurred. Please try again later.');
+        $window.alert(JSON.stringify(res));
       }
     };
   }

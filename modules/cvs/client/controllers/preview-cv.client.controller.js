@@ -30,6 +30,7 @@
     };
 
     vm.composeTemplate = function() {
+
       var section,
         entry,
         key,
@@ -65,6 +66,14 @@
       template = template
       + '<div class="mainDetails">';
 
+      // PROFILE PICTURE
+      if (entry.content.picture.data.length > 0) {
+        template = template
+        + '<div id="headshot">'
+        + '<img src="' + entry.content.picture.data + '" alt="' + entry.content.fullName + '" />'
+        + '</div>';
+      }
+
       // NAME
       template = template
       + '<div id="name">'
@@ -85,47 +94,68 @@
       template = template
       + '</div>';
 
-      // CONTACT DETAILS
+      // CLOSE MAIN DETAILS
       template = template
-      + '<div id="contactDetails">'
-      + '<ul>';
-
-      // Address information
-      template = template
-      + '<li>Residence:</li>'
-      + '<li>' + entry.content.addressLine1 + '</li>'
-      + '<li>' + entry.content.addressLine2 + '</li>'
-      + '<li>' + entry.content.addressLine3 + '</li>';
-
-      // Phone number
-      template = template
-      + '<li>Phone number: ' + entry.content.phoneNumber + '</li>';
-
-      // Email
-      template = template
-      + '<li>Email address: <a href="' + entry.content.emailAddress + '" target="_blank">' + entry.content.emailAddress + '</a></li>';
-
-      // Website
-      template = template
-      + '<li>Website: <a href="' + entry.content.website + '">' + entry.content.website + '</a></li>';
-
-      // CLOSE CONTACT DETAILS & MAIN DETAILS
-      template = template
-      + '</ul>'
-      + '</div>'
-      + '<div class="clear">'
-      + '</div>'
-      + '</div>';
+       + '<div class="clear"></div>'
+       + '</div>';
 
       // OPEN MAIN AREA
       template = template
       + '<div id="mainArea">';
 
       // Show rest information as usual
-      for (i = 1; i < vm.cv.content.sections.length; i++) {
+      for (i = 0; i < vm.cv.content.sections.length; i++) {
         section = vm.cv.content.sections[i];
 
         switch (section.name) {
+          case 'Personal details':
+            entry = section.content.entries[0];
+
+            template = template
+            + '<section>'
+            + '<article>'
+            + '<div class="sectionTitle">'
+            + '<h2>' + section.name + '</h2>'
+            + '</div>'
+            + '<div class="sectionContent">'
+            + '<div id="contactDetails">'
+            + '<p>';
+
+            template = template
+            + '<ul>';
+
+            // Address information
+            template = template
+            + '<li>Residence:</li>'
+            + '<li>' + entry.content.addressLine1 + '</li>'
+            + '<li>' + entry.content.addressLine2 + '</li>'
+            + '<li>' + entry.content.addressLine3 + '</li>';
+
+            // Phone number
+            template = template
+            + '<li>Phone number: ' + entry.content.phoneNumber + '</li>';
+
+            // Email
+            template = template
+            + '<li>Email address: <a href="' + entry.content.emailAddress + '" target="_blank">' + entry.content.emailAddress + '</a></li>';
+
+            // Website
+            template = template
+            + '<li>Website: <a href="' + entry.content.website + '">' + entry.content.website + '</a></li>';
+
+            template = template
+            + '</ul>';
+
+            template = template
+            + '</p>'
+            + '</div>'
+            + '</div>'
+            + '</article>'
+            + '<div class="clear">'
+            + '</div>'
+            + '</section>';
+
+            break;
           case 'Personal profile':
             entry = section.content.entries[0];
 

@@ -1,0 +1,22 @@
+.header-clickable {
+  cursor: pointer;
+}
+.inline {
+  display: inline-block;
+}
+.click-to-edit {
+  margin-left: 5px;
+  color:gray;
+  font-style:italic;
+}
+.top-buffer {
+  margin-top: 10px;
+}
+.control-label {
+  color: #333;
+  font-weight: normal;
+}
+.thumbnail {
+  max-height: 150px;
+  max-width: 150px;
+}
