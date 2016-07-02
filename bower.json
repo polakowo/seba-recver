@@ -17,7 +17,8 @@
     "tinymce": "tinymce-dist#^4.3.12",
     "angular-ui-tinymce": "^0.0.16",
     "angular-file-saver": "^1.1.1",
-    "ng-youtube-embed": "^0.3.3"
+    "ng-youtube-embed": "^0.3.3",
+    "angular-google-maps": "^2.3.3"
   },
   "overrides": {
     "bootstrap": {

@@ -21,7 +21,10 @@ module.exports = {
         'public/lib/tinymce-dist/tinymce.js',
         'public/lib/angular-ui-tinymce/src/tinymce.js',
         'public/lib/angular-file-saver/dist/angular-file-saver.bundle.min.js',
-        'public/lib/ng-youtube-embed/build/ng-youtube-embed.min.js'
+        'public/lib/ng-youtube-embed/build/ng-youtube-embed.min.js',
+        'public/lib/lodash/dist/lodash.js',
+        'public/lib/angular-simple-logger/dist/angular-simple-logger.js',
+        'public/lib/angular-google-maps/dist/angular-google-maps.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

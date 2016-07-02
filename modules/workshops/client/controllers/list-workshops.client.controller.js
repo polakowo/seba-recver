@@ -3,11 +3,18 @@
 
     angular
         .module('workshops')
-        .controller('WorkshopsListController', WorkshopsListController);
+        .controller('WorkshopsListController', WorkshopsListController)
+        .config(function(uiGmapGoogleMapApiProvider) {
+            uiGmapGoogleMapApiProvider.configure({
+                key: 'AIzaSyCfPgzndLgMo_t0A8ikpCbZas4vCW-nHBg', // Generated on 02.07.2016
+                v: '3.20', //defaults to latest 3.X anyhow
+                libraries: 'visualization'
+            });
+        });
 
-    WorkshopsListController.$inject = ['WorkshopsService'];
+    WorkshopsListController.$inject = ['WorkshopsService', '$scope'];
 
-    function WorkshopsListController(WorkshopsService) {
+    function WorkshopsListController(WorkshopsService, $scope) {
         var vm = this;
 
         vm.workshops = WorkshopsService.query();
@@ -29,6 +36,7 @@
             };
         };
 
+        $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 
         /*
          https://www.youtube.com/watch?v=PH3HFEfXQ9Q
