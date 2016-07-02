@@ -1,25 +1,44 @@
 <section>
-  <div class="page-header">
-    <h1>Workshops</h1>
+  <!--<div class="page-header">-->
+  <!--<h1>Workshops</h1>-->
+  <!--</div>-->
+
+  <div class="container" ng-click="vm.videoClicked('0')">
+    <div class="row">
+      <div class="col-xs-6">
+        <div ng-repeat="workshop in vm.workshops | limitTo: 4" class="col-xs-3">
+          <ng-youtube-embed url="workshop.video_url"
+                            color="white"
+                            autohide="true"
+                            showinfo="false"
+                            width="100%"
+                            height="60px"></ng-youtube-embed>
+        </div>
+        <div ng-repeat="_ in [0, 1, 2, 3]" class="col-xs-3"
+             ng-click="vm.videoClicked($index); $event.stopPropagation()"
+             ng-style="vm.getOverlayStyle($index)"
+        >
+        </div>
+      </div>
+      <div class="col-sm-6">Right</div>
+    </div>
   </div>
 
-  <div class="list-group">
-    <a ng-repeat="workshop in vm.workshops" ui-sref="workshops.view({ workshopId: workshop._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="workshop.created | date:'mediumDate'"></span>
-        <!-- by
-            <span ng-if="workshop.user" ng-bind="workshop.user.displayName"></span>
-            <span ng-if="!workshop.user">Deleted User</span> -->
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="workshop.title"></h4>
+  <!--<div class="list-group">-->
+  <!--<a ng-repeat="workshop in vm.workshops" ui-sref="workshops.view({ workshopId: workshop._id })"-->
+  <!--class="list-group-item">-->
+  <!--<small class="list-group-item-text">-->
+  <!--Posted on-->
+  <!--<span ng-bind="workshop.created | date:'mediumDate'"></span>-->
+  <!--</small>-->
+  <!--<h4 class="list-group-item-heading" ng-bind="workshop.title"></h4>-->
 
-      <ng-youtube-embed url="workshop.video_url" color="white"></ng-youtube-embed>
+  <!--<ng-youtube-embed url="workshop.video_url" color="white"></ng-youtube-embed>-->
 
-    </a>
-  </div>
+  <!--</a>-->
+  <!--</div>-->
+
   <div class="alert alert-warning text-center" ng-if="vm.workshops.$resolved && !vm.workshops.length">
-    No Workshops yet
+    Loading... Please wait.
   </div>
 </section>
