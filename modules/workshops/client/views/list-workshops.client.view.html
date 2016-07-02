@@ -20,6 +20,12 @@
         <div class="row">
           <div class="col-xs-12">
             <ng-youtube-embed url="vm.currentVideoURL" width="100%"></ng-youtube-embed>
+            <div class="text-center">
+              <div class="btn-group btn-group-lg" role="group">
+                <button type="button" class="rr-btn-playback btn btn-default" aria-label="Previous video">Previous</button>
+                <button type="button" class="rr-btn-playback btn btn-default" aria-label="Next video">Next</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -30,7 +36,15 @@
           <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
         </div>
         <div class="row">
-          <h3>Workshops nearby</h3>
+          <div class="col-xs-12">
+            <h3>Workshops nearby</h3>
+            <ul>
+              <li><a href="#">How to format your CV like a Boss</a></li>
+              <li><a href="#">Tips and Tricks on writing a CV that stands out</a></li>
+              <li><a href="#">International job applications</a></li>
+              <li><a href="#">Latest research on job application stats</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

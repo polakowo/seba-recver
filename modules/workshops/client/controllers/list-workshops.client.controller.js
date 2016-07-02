@@ -36,21 +36,8 @@
             };
         };
 
+        // Here's more on how to use it properly: http://angular-ui.github.io/angular-google-maps/#!/use
         $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
-
-        /*
-         https://www.youtube.com/watch?v=PH3HFEfXQ9Q
-         https://www.youtube.com/watch?v=PTbyvLGqTR4
-         https://www.youtube.com/watch?v=BV8LJOIMKqo
-
-         https://www.youtube.com/watch?v=_-kySh6jspg
-
-         https://www.youtube.com/watch?v=U0JAfqEak2c
-         https://www.youtube.com/watch?v=KxLKPQO3z1I
-         https://www.youtube.com/watch?v=M9JmC45VUtc
-         https://www.youtube.com/watch?v=mxOli8laZos
-         https://www.youtube.com/watch?v=E0D-30ynCBI
-         */
 
         vm.currentVideoURL = 'https://www.youtube.com/watch?v=PH3HFEfXQ9Q';
 
@@ -89,8 +76,25 @@
             'type': 'Online course',
             'title': 'Creating CV for dummies',
             'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=PH3HFEfXQ9Q'
-        }
-        ];
+            'video_url': 'https://www.youtube.com/watch?v=KxLKPQO3z1I'
+        }, {
+            'created': Date.now(),
+            'type': 'Online course',
+            'title': 'Creating CV for dummies',
+            'location': 'Munich',
+            'video_url': 'https://www.youtube.com/watch?v=M9JmC45VUtc'
+        }, {
+            'created': Date.now(),
+            'type': 'Online course',
+            'title': 'Creating CV for dummies',
+            'location': 'Munich',
+            'video_url': 'https://www.youtube.com/watch?v=mxOli8laZos'
+        }, {
+            'created': Date.now(),
+            'type': 'Online course',
+            'title': 'Creating CV for dummies',
+            'location': 'Munich',
+            'video_url': 'https://www.youtube.com/watch?v=E0D-30ynCBI'
+        }];
     }
 }());
