@@ -14,13 +14,24 @@ var WorkshopSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  type: {
+    type: String,
+    default: 'Online course',
+    trim: true,
+    required: 'Workshop type must be specified'
+  },
   title: {
     type: String,
     default: '',
     trim: true,
     required: 'Title cannot be blank'
   },
-  content: {
+  location: {
+    type: String,
+    default: 'Munich',
+    trim: true
+  },
+  video_url: {
     type: String,
     default: '',
     trim: true

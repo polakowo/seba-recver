@@ -2,17 +2,27 @@
   <div class="page-header">
     <h1>Workshops</h1>
   </div>
+
   <div class="list-group">
-    <a ng-repeat="workshop in vm.workshops" ui-sref="workshops.view({ workshopId: workshop._id })" class="list-group-item">
+    <a ng-repeat="workshop in vm.workshops" ui-sref="workshops.view({ workshopId: workshop._id })"
+       class="list-group-item">
       <small class="list-group-item-text">
         Posted on
         <span ng-bind="workshop.created | date:'mediumDate'"></span>
-		<!-- by
-        <span ng-if="workshop.user" ng-bind="workshop.user.displayName"></span>
-        <span ng-if="!workshop.user">Deleted User</span> -->
+        <!-- by
+            <span ng-if="workshop.user" ng-bind="workshop.user.displayName"></span>
+            <span ng-if="!workshop.user">Deleted User</span> -->
       </small>
       <h4 class="list-group-item-heading" ng-bind="workshop.title"></h4>
-      <p class="list-group-item-text" ng-bind="workshop.content"></p>
+
+        <div ng-if="workshop.video_url" class="embed-responsive embed-responsive-16by9">
+          <!--<iframe class="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY"></iframe>-->
+          <!--<iframe class="embed-responsive-item" src="{{workshop.video_url}}"></iframe>-->
+          <object width="420" height="315"
+                  data="http://www.youtube.com/embed/XGSy3_Czz8k">
+          </object>
+        </div>
+
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.workshops.$resolved && !vm.workshops.length">
