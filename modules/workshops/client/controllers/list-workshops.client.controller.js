@@ -44,6 +44,8 @@
          https://www.youtube.com/watch?v=E0D-30ynCBI
          */
 
+        vm.currentVideoURL = 'https://www.youtube.com/watch?v=PH3HFEfXQ9Q';
+
         vm.workshops = [{
             'created': Date.now(),
             'type': 'Online course',
