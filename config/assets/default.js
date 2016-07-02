@@ -20,7 +20,8 @@ module.exports = {
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/tinymce-dist/tinymce.js',
         'public/lib/angular-ui-tinymce/src/tinymce.js',
-        'public/lib/angular-file-saver/dist/angular-file-saver.bundle.min.js'
+        'public/lib/angular-file-saver/dist/angular-file-saver.bundle.min.js',
+        'public/lib/ng-youtube-embed/build/ng-youtube-embed.min.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
