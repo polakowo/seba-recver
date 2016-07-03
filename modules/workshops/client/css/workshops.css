@@ -27,8 +27,6 @@
 /* Video preview overlays */
 .container-fluid.rr-workshops-vertical-overlay {
     padding: 0;
-    /*margin-left: -15px;*/
-    /*margin-right: -15px;*/
     left: 15px;
     right: 15px;
     top: 0;
@@ -37,10 +35,9 @@
     width: auto;
 }
 
-/*.rr-vertical-overlay :first-child {*/
-    /*left: 0;*/
-/*}*/
-
-/*.rr-vertical-overlay :last-child {*/
-    /*left: 50px;*/
-/*}*/
+.rr-clickable {
+    cursor: pointer;
+}
+.rr-clickable.col-xs-1 {
+    height: 65px;
+}

@@ -1,17 +1,17 @@
 <section>
 
-  <div class="container-fluid" ng-click="vm.videoClicked('outer container')">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-xs-6">
         <div class="container-fluid">
 
+          <!--Video selection row-->
           <div class="rr-workshops-playback-controls row">
             <div class="rr-workshops-playback-controls col-xs-1">
               <span class="glyphicon glyphicon-chevron-left"></span>
             </div>
             <div class="col-xs-10">
-              <div ng-repeat="workshop in vm.workshops | limitTo: 4" class="col-xs-3"
-                   ng-click="vm.videoClicked($index); $event.stopPropagation()" style="z-index: 1000">
+              <div ng-repeat="workshop in vm.workshops | limitTo: 4" class="col-xs-3">
                 <ng-youtube-embed url="workshop.video_url"
                                   color="white"
                                   autohide="true"
@@ -27,35 +27,39 @@
             </div>
           </div>
 
+          <!--Overlay layer for catching mouse events-->
           <div class="container-fluid rr-workshops-vertical-overlay">
             <div class="row">
-              <div class="col-xs-1">O</div>
+              <div class="col-xs-1 rr-clickable" ng-click="vm.prevClicked()"></div>
               <div class="col-xs-10">
                 <div class="container-fluid">
-                  <div class="row">
-                    <div ng-repeat="_ in [0, 1, 2, 3]" class="col-xs-3"
+                  <div class="rr-workshops-playback-controls row">
+                    <div ng-repeat="_ in [0, 1, 2, 3]" class="rr-clickable col-xs-3"
                          ng-click="vm.videoClicked($index); $event.stopPropagation()"
                          ng-style="vm.getOverlayStyle($index)">
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-xs-1">P</div>
+              <div class="col-xs-1 rr-clickable" ng-click="vm.nextClicked()"></div>
             </div>
           </div>
 
+          <!--Main video playback section-->
           <div class="container-fluid">
             <div class="row">
               <div class="col-xs-12">
-                <ng-youtube-embed url="vm.currentVideoURL" width="100%"></ng-youtube-embed>
+                <ng-youtube-embed url="vm.workshops[vm.currentIndex].video_url" width="100%"></ng-youtube-embed>
                 <div class="text-center">
                   <div class="btn-group btn-group-lg" role="group">
                     <button type="button" class="rr-workshops-playback-controls btn btn-default"
-                            aria-label="Previous video">
+                            aria-label="Previous video"
+                            ng-click="vm.prevClicked()">
                       Previous
                     </button>
                     <button type="button" class="rr-workshops-playback-controls btn btn-default"
-                            aria-label="Next video">
+                            aria-label="Next video"
+                            ng-click="vm.nextClicked()">
                       Next
                     </button>
                   </div>
