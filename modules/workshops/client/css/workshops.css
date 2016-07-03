@@ -1,8 +1,46 @@
+/* Google Maps */
 .angular-google-map-container {
     height: 400px;
 }
 
-.rr-btn-playback.btn {
+/* Playback controls */
+.rr-workshops-playback-controls.row div {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.rr-workshops-playback-controls.btn {
     width: 150px;
     max-width: 50%;
 }
+
+.rr-workshops-playback-controls.col-xs-1 {
+    text-align: center;
+    height: 60px;
+}
+
+.rr-workshops-playback-controls .glyphicon {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Video preview overlays */
+.container-fluid.rr-workshops-vertical-overlay {
+    padding: 0;
+    /*margin-left: -15px;*/
+    /*margin-right: -15px;*/
+    left: 15px;
+    right: 15px;
+    top: 0;
+    height: 65px;
+    position: absolute;
+    width: auto;
+}
+
+/*.rr-vertical-overlay :first-child {*/
+    /*left: 0;*/
+/*}*/
+
+/*.rr-vertical-overlay :last-child {*/
+    /*left: 50px;*/
+/*}*/

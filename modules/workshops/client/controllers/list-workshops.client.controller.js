@@ -31,8 +31,13 @@
             return {
                 'z-index': 1000,
                 height: '60px',
-                position: 'absolute',
-                left: index * 25 + '%'
+                'background-color': 'yellow'
+            };
+            return {
+                'z-index': 1000,
+                height: '60px',
+                left: index * 25 + '%',
+                'background-color': 'yellow'
             };
         };
 
