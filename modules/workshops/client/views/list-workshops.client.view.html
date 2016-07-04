@@ -11,7 +11,7 @@
               <span class="glyphicon glyphicon-chevron-left"></span>
             </div>
             <div class="col-xs-10">
-              <div ng-repeat="workshop in vm.workshops | limitTo: 4" class="col-xs-3">
+              <div ng-repeat="workshop in vm.workshops | filter: {type: 'Online course'} | limitTo: 4" class="col-xs-3">
                 <ng-youtube-embed url="workshop.video_url"
                                   color="white"
                                   autohide="true"
@@ -49,7 +49,11 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-xs-12">
-                <ng-youtube-embed url="vm.workshops[vm.currentIndex].video_url" width="100%"></ng-youtube-embed>
+                <ng-youtube-embed url="vm.getOnlineCourse(vm.currentIndex).video_url" width="100%"
+                                  color="white"
+                                  autohide="true"
+                                  showinfo="false"
+                ></ng-youtube-embed>
                 <div class="text-center">
                   <div class="btn-group btn-group-lg" role="group">
                     <button type="button" class="rr-workshops-playback-controls btn btn-default"
@@ -73,17 +77,19 @@
 
       <div class="col-xs-6">
         <div class="row">
-          <p>Google Map</p>
-          <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+          <h1 class="text-center">Workshops nearby</h1>
+          <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom'>
+            <ui-gmap-marker ng-repeat="marker in vm.markers" coords="marker.coords" options="marker.options"
+                            events="marker.events" idkey="marker.id">
+            </ui-gmap-marker>
+          </ui-gmap-google-map>
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <h3>Workshops nearby</h3>
             <ul>
-              <li><a href="#">How to format your CV like a Boss</a></li>
-              <li><a href="#">Tips and Tricks on writing a CV that stands out</a></li>
-              <li><a href="#">International job applications</a></li>
-              <li><a href="#">Latest research on job application stats</a></li>
+              <li ng-repeat="workshop in vm.workshops | filter:{type: 'Workshop'}">
+                <a ng-href="{{workshop.url}}">{{workshop.title}}</a>
+              </li>
             </ul>
           </div>
         </div>
