@@ -13,6 +13,10 @@
 
     vm.cv = cv;
 
+    vm.duplicate = function() {
+       
+      vm.cv.$duplicate($state.go('cvs.list'));
+    };
     // Remove existing CV
     vm.remove = function() {
       if ($window.confirm('Are you sure you want to delete?')) {

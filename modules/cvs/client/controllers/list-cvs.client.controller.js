@@ -10,7 +10,6 @@
   function ListCVsCtrl(CVsService) {
 
     var vm = this;
-
     vm.cvs = CVsService.query();
   }
 }());

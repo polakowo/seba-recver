@@ -10,6 +10,9 @@
     <button type="button" class="btn btn-default" ui-sref="cvs.edit({ cvId: vm.cv._id })">
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
     </button>
+    <button type="button" class="btn btn-default" ui-sref="cvs.duplicate({ cvId: vm.cv._id})">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Duplicate
+    </button>
   </div>
   <div class="btn-group">
     <button type="button" class="btn btn-default" ng-click="vm.remove()">

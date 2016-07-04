@@ -21,7 +21,6 @@
       title: 'List CVs',
       state: 'cvs.list'
     });
-
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'cvs', {
       title: 'Create CV',
