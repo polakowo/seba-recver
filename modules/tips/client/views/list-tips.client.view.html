@@ -1,19 +1,17 @@
 <section>
   <div class="page-header">
-    <h1>Daniel has been here!...</h1>
+    <h1>Tips</h1>
   </div>
   <div class="list-group">
     <a data-ng-repeat="tip in vm.tips"
        data-ui-sref="tips.view({ tipId: tip._id })"
        class="list-group-item">
       <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="tip.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="tip.user" data-ng-bind="tip.user.displayName"></span>
-        <span data-ng-if="!tip.user">Deleted User</span>
+
+
       </small>
-      <h4 class="list-group-item-heading" data-ng-bind="tip.name"></h4>
+      <h4 class="list-group-item-heading" data-ng-bind="tip.title"></h4>
+      <p ng-bind-html="tip.content"></p>
     </a>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.tips.$resolved && !vm.tips.length">

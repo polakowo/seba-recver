@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Tip Schema
  */
 var TipSchema = new Schema({
-  name: {
+  title: {
     type: String,
     default: '',
     required: 'Please fill Tip name',
@@ -23,6 +23,10 @@ var TipSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+  content: {
+    type: String,
+    default: ''
   }
 });
 
