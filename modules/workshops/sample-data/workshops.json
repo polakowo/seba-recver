@@ -1,61 +1,107 @@
-[{
-  "created": 1467565691736,
-  "type": "Workshop",
-  "title": "German CV writing",
-  "location": "Munich",
-  "url": "https://www.ctp.org.uk/resettlement-courses/core-workshop/German+CV+writing"
-}, {
-  "created": 1467565691736,
-  "type": "Online course",
-  "title": "Creating CV for dummies",
-  "location": "Munich",
-  "video_url": "https://www.youtube.com/watch?v=PH3HFEfXQ9Q"
-}, {
-  "created": 1467565691736,
-  "type": "Online course",
-  "title": "Creating CV for dummies",
-  "location": "Munich",
-  "video_url": "https://www.youtube.com/watch?v=PTbyvLGqTR4"
-}, {
-  "created": 1467565691736,
-  "type": "Online course",
-  "title": "Creating CV for dummies",
-  "location": "Munich",
-  "video_url": "https://www.youtube.com/watch?v=BV8LJOIMKqo"
-}, {
-  "created": 1467565691736,
-  "type": "Online course",
-  "title": "Creating CV for dummies",
-  "location": "Munich",
-  "video_url": "https://www.youtube.com/watch?v=_-kySh6jspg"
-}, {
-  "created": 1467565691736,
-  "type": "Online course",
-  "title": "Creating CV for dummies",
-  "location": "Munich",
-  "video_url": "https://www.youtube.com/watch?v=U0JAfqEak2c"
-}, {
-  "created": 1467565691736,
-  "type": "Online course",
-  "title": "Creating CV for dummies",
-  "location": "Munich",
-  "video_url": "https://www.youtube.com/watch?v=KxLKPQO3z1I"
-}, {
-  "created": 1467565691736,
-  "type": "Online course",
-  "title": "Creating CV for dummies",
-  "location": "Munich",
-  "video_url": "https://www.youtube.com/watch?v=M9JmC45VUtc"
-}, {
-  "created": 1467565691736,
-  "type": "Online course",
-  "title": "Creating CV for dummies",
-  "location": "Munich",
-  "video_url": "https://www.youtube.com/watch?v=mxOli8laZos"
-}, {
-  "created": 1467565691736,
-  "type": "Online course",
-  "title": "Creating CV for dummies",
-  "location": "Munich",
-  "video_url": "https://www.youtube.com/watch?v=E0D-30ynCBI"
-}]
+[
+  {
+    "created": 1467565691736,
+    "type": "Workshop",
+    "title": "German CV writing",
+    "location": "Sennelager",
+    "url": "https://www.ctp.org.uk/resettlement-courses/core-workshop/German+CV+writing",
+    "marker": {
+      "id": 0,
+      "coords": {
+        "latitude": 51.773999,
+        "longitude": 8.712893
+      }
+    }
+  },
+  {
+    "created": 1467565691736,
+    "type": "Workshop",
+    "title": "Job interview in Germany",
+    "location": "Berlin",
+    "marker": {
+      "id": 1,
+      "coords": {
+        "latitude": 52.518220,
+        "longitude": 13.407278
+      }
+    },
+    "url": "http://www.expatcoaching.de/en/coaching-counselling/coaching/english-job-interview-preparation/"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Workshop",
+    "title": "Resume Workshop with Munich-Women in Computing and Munich Geekettes",
+    "location": "Munich",
+    "marker": {
+      "id": 2,
+      "coords": {
+        "latitude": 48.137870,
+        "longitude": 11.571642
+      }
+    },
+    "url": "http://www.expatcoaching.de/en/coaching-counselling/coaching/english-job-interview-preparation/"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Online course",
+    "title": "Creating CV for dummies",
+    "location": "Munich",
+    "video_url": "https://www.youtube.com/watch?v=PH3HFEfXQ9Q"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Online course",
+    "title": "Creating CV for dummies",
+    "location": "Munich",
+    "video_url": "https://www.youtube.com/watch?v=PTbyvLGqTR4"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Online course",
+    "title": "Creating CV for dummies",
+    "location": "Munich",
+    "video_url": "https://www.youtube.com/watch?v=BV8LJOIMKqo"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Online course",
+    "title": "Creating CV for dummies",
+    "location": "Munich",
+    "video_url": "https://www.youtube.com/watch?v=_-kySh6jspg"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Online course",
+    "title": "Creating CV for dummies",
+    "location": "Munich",
+    "video_url": "https://www.youtube.com/watch?v=U0JAfqEak2c"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Online course",
+    "title": "Creating CV for dummies",
+    "location": "Munich",
+    "video_url": "https://www.youtube.com/watch?v=KxLKPQO3z1I"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Online course",
+    "title": "Creating CV for dummies",
+    "location": "Munich",
+    "video_url": "https://www.youtube.com/watch?v=M9JmC45VUtc"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Online course",
+    "title": "Creating CV for dummies",
+    "location": "Munich",
+    "video_url": "https://www.youtube.com/watch?v=mxOli8laZos"
+  },
+  {
+    "created": 1467565691736,
+    "type": "Online course",
+    "title": "Creating CV for dummies",
+    "location": "Munich",
+    "video_url": "https://www.youtube.com/watch?v=E0D-30ynCBI"
+  }
+]

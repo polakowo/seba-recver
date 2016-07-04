@@ -22,67 +22,6 @@
         // https://www.ctp.org.uk/resettlement-courses/core-workshop/German+CV+writing
 
         vm.workshops = WorkshopsService.query();
-        vm.workshops = [{
-            'created': Date.now(),
-            'type': 'Workshop',
-            'title': 'German CV writing',
-            'location': 'Munich',
-            'url': 'https://www.ctp.org.uk/resettlement-courses/core-workshop/German+CV+writing'
-        }, {
-            'created': Date.now(),
-            'type': 'Online course',
-            'title': 'Creating CV for dummies',
-            'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=PH3HFEfXQ9Q'
-        }, {
-            'created': Date.now(),
-            'type': 'Online course',
-            'title': 'Creating CV for dummies',
-            'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=PTbyvLGqTR4'
-        }, {
-            'created': Date.now(),
-            'type': 'Online course',
-            'title': 'Creating CV for dummies',
-            'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=BV8LJOIMKqo'
-        }, {
-            'created': Date.now(),
-            'type': 'Online course',
-            'title': 'Creating CV for dummies',
-            'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=_-kySh6jspg'
-        }, {
-            'created': Date.now(),
-            'type': 'Online course',
-            'title': 'Creating CV for dummies',
-            'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=U0JAfqEak2c'
-        }, {
-            'created': Date.now(),
-            'type': 'Online course',
-            'title': 'Creating CV for dummies',
-            'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=KxLKPQO3z1I'
-        }, {
-            'created': Date.now(),
-            'type': 'Online course',
-            'title': 'Creating CV for dummies',
-            'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=M9JmC45VUtc'
-        }, {
-            'created': Date.now(),
-            'type': 'Online course',
-            'title': 'Creating CV for dummies',
-            'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=mxOli8laZos'
-        }, {
-            'created': Date.now(),
-            'type': 'Online course',
-            'title': 'Creating CV for dummies',
-            'location': 'Munich',
-            'video_url': 'https://www.youtube.com/watch?v=E0D-30ynCBI'
-        }];
 
         vm.currentIndex = 0;
 
@@ -137,32 +76,7 @@
         };
 
         // Here's more on how to use it properly: http://angular-ui.github.io/angular-google-maps/#!/use
-        vm.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
-
-        vm.markers = [{
-            id: 0,
-            coords: {
-                latitude: 45,
-                longitude: -73
-            },
-            options: {draggable: true}
-            // events: {
-            //     dragend: function (marker, eventName, args) {
-            //         $log.log('marker dragend');
-            //         var lat = marker.getPosition().lat();
-            //         var lon = marker.getPosition().lng();
-            //         $log.log(lat);
-            //         $log.log(lon);
-            //
-            //         $scope.marker.options = {
-            //             draggable: true,
-            //             labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-            //             labelAnchor: "100 0",
-            //             labelClass: "marker-labels"
-            //         };
-            //     }
-            // }
-        }];
+        vm.map = {center: {latitude: 51.609488, longitude: 10.172388}, zoom: 5};
 
         vm.currentVideoURL = 'https://www.youtube.com/watch?v=PH3HFEfXQ9Q';
     }
