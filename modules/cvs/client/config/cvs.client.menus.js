@@ -18,7 +18,7 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'cvs', {
-      title: 'List CVs',
+      title: 'Manage CVs',
       state: 'cvs.list'
     });
     // Add the dropdown create item

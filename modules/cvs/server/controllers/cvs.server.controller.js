@@ -60,11 +60,13 @@ exports.update = function (req, res) {
   });
 };
 /**
- * Duplicate an cv
+ * Duplicate a cv
  */
 exports.duplicate = function (req, res) {
-  var cv = new CV(req.body);
-  cv.user = req.user;
+  if (req.cv._id) {
+    delete req.cv._id;
+  }
+  var cv = new CV(req.cv);
   
   cv.save(function (err) {
     if (err) {
