@@ -59,6 +59,23 @@ exports.update = function (req, res) {
     }
   });
 };
+/**
+ * Duplicate an cv
+ */
+exports.duplicate = function (req, res) {
+  var cv = new CV(req.body);
+  cv.user = req.user;
+  
+  cv.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(cv);
+    }
+  });
+};
 
 /**
  * Delete an cv

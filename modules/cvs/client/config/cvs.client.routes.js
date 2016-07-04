@@ -49,6 +49,19 @@
           pageTitle: 'Edit CV {{ cvResolve.title }}'
         }
       })
+        .state('cvs.duplicate', {
+            url: '/:cvId/duplicate',
+            templateUrl: 'modules/cvs/client/views/list-cvs.client.view.html',
+            controller: 'ListCVsCtrl',
+            controllerAs: 'vm',
+            resolve: {
+                cvResolve: newCV
+            },
+            data: {
+                roles: ['user', 'admin'],
+                pageTitle: 'List CVs {{ cvResolve.title }}'
+            }
+        })
       .state('cvs.view', {
         url: '/:cvId',
         templateUrl: 'modules/cvs/client/views/view-cv.client.view.html',
