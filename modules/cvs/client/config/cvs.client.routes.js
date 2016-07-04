@@ -73,6 +73,18 @@
         data: {
           pageTitle: 'CV {{ cvResolve.title }}'
         }
+      })
+      .state('cvs.preview',{
+        url: '/:cvId/preview',
+        templateUrl: 'modules/cvs/client/views/preview-cv.client.view.html',
+        controller: 'PreviewCVCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          cvResolve: getCV
+          },
+        data: {
+          pageTitle: 'CV {{ cvResolve.title }}'
+          }
       });
   }
 

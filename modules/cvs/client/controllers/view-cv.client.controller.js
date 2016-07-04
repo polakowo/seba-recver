@@ -17,6 +17,12 @@
             delete vm.cv._id;
             vm.cv.$save(successCallback, errorCallback);
         };
+        //Share existing CV
+        vm.share = function () {
+            var url = window.location.href;
+            print(url)
+            vm.cv.$save(url);
+        };
         // Remove existing CV
         vm.remove = function () {
             if ($window.confirm('Are you sure you want to delete?')) {
@@ -53,3 +59,4 @@
         }
     }
 }());
+

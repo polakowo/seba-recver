@@ -79,6 +79,20 @@ exports.duplicate = function (req, res) {
   });
 };
 
+ exports.share = function (req, res) {
+   var url = window.location.href;
+
+   cv.save(function (err) {
+     if (err) {
+       return res.status(400).send({
+         message: errorHandler.getErrorMessage(err)
+       });
+     } else {
+       res.json(cv);
+     }
+   });
+ };
+
 /**
  * Delete an cv
  */

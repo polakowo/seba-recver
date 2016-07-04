@@ -38,6 +38,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/cvs/:cvId',
       permissions: []
+    }, {
+      resources: 'api/cvs/:cvId/preview',
+      permissions: ['get']
     }]
   }]);
 };
