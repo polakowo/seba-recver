@@ -6,7 +6,7 @@
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];
-
+/*
   function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
       title: 'Premium',
@@ -14,5 +14,5 @@
       roles: ['*'],
       position: 3
     });
-  }
+  }*/
 }());
